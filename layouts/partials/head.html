@@ -1,0 +1,25 @@
+<head>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="google" content="notranslate" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	<meta charset="utf-8">
+	<meta name="description" content="{{ .Description }}">
+	<meta name="author" content="Löwenware.s.r.o">
+
+	<title>{{ .Title }}{{ if not .IsHome }} - Löwenware{{ end }}</title>
+
+	{{ $cssOpts := (dict "targetPath" "css/style.css") }}
+
+	{{ if .Site.IsServer }}
+		{{ $style := resources.Get "scss/main.scss" | toCSS $cssOpts }}
+		<link href="{{ $style.Permalink }}" rel="stylesheet" />
+	{{ else }}
+		{{ $style := resources.Get "scss/main.scss" | toCSS $cssOpts | postCSS | minify | fingerprint }}
+		<link href="{{ $style.Permalink }}" rel="stylesheet" />
+	{{ end }}
+
+	<script type="text/javascript">document.documentElement.className='';</script>
+</head>

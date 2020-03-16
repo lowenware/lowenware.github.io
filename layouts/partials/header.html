@@ -1,0 +1,31 @@
+<div class="main-overlay">
+	{{ if not .IsHome }}<a href="/">{{ end }}
+	<svg class="icon logo"><use xlink:href="/icon/sprite.svg#logo"/></svg>
+	{{ if not .IsHome }}</a>{{ end }}
+	<a href="javascript:;" id="menu-switch" class="menu-switch" title="Switch menu">
+		<svg class="icon path" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24">
+			<g class="svg-group">
+				<path class="path lines" d="m0 4v2h24v-2zm0 7v2h24v-2zm0 7v2h24v-2z"/>
+				<path class="path cross" d="m4.22 2.81-1.42 1.42 7.78 7.78-7.78 7.78 1.42 1.42 7.78-7.78 7.78 7.78 1.42-1.42-7.78-7.78 7.78-7.78-1.42-1.42-7.78 7.78z"/>
+			</g>
+		</svg>
+	</a>
+	<div class="text-logo">Löwenware</div>
+</div>
+
+<nav id="menu" class="menu">
+	<ul>
+		{{ $currentPage := . }}
+		{{ range .Site.Menus.main }}
+			{{ if and (.Page.Params.navigation) (eq .Page.Params.navigation true) }}
+			<li>
+				<a href="{{ .URL }}" {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .)  }}class="active"{{ end }}>
+					{{ .Pre }}
+					{{ .Name }}
+				</a>
+			</li>
+			{{ end }}
+		{{ end }}
+	</ul>
+</nav>
+

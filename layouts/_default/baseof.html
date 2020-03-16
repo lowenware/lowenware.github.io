@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" data-view="home" class="no-js">
+	{{- partial "head.html" . -}}
+	<body>
+		<div class="main-wrapper">
+			{{- partial "header.html" . -}}
+				{{- block "main" . }}{{- end }}
+		</div>
+		{{- partial "footer.html" . -}}
+	</body>
+	<script async type="text/javascript" src="/js/main.js"></script>
+	<script async src="https://www.w3counter.com/tracker.js?id=127316"></script>
+</html>

@@ -1,0 +1,101 @@
+.section-link {
+	background-color: $grey200;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	transition: background-color .3s ease-in-out;
+
+	h1 {
+		margin-bottom: 8px;
+	}
+
+	p {
+		color: $dark;
+	}
+
+	&:hover {
+		background-color: $grey300;
+	}
+}
+
+.title {
+	color: $grey600;
+	text-transform: uppercase;
+}
+
+
+.article {
+	.taxonomy {
+		a:not(.author) {
+			color: $dark;
+			&:hover {
+				color: $blue;
+			}
+		}
+	}
+	.timestamp {
+		color: $grey600;
+	}
+	.tags {
+		a {
+			color: $grey500;
+		}
+	}
+}
+
+.github-repo {
+	display: flex;
+	align-items: center;
+	.icon {
+		margin-right: 8px;
+	}
+}
+
+
+.text-content {
+	max-width: $paragraph-width;
+	margin: 0 auto;
+	padding: 0 0 288px;
+}
+
+.comments {
+	border-top: 1px solid $grey300;
+}
+
+.content {
+	.header {
+		padding: 0 0 24px;
+	}
+
+	h1 {
+		padding: 0;
+	}
+
+	h2, h3, h4, h5 {
+		padding: 16px 0 4px;
+	}
+
+	p {
+		padding: 8px 0;
+	}
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+
+	ul {
+		li {
+			padding: 0 0 0 24px;
+			list-style: disc;
+			&::before {
+				content: '-';
+				padding: 0 8px 0 0;
+			}
+		}
+	}
+}
+
+

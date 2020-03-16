@@ -1,0 +1,41 @@
+.list-content {
+	max-width: $paragraph-width;
+	margin: 0 auto;
+	position: relative;
+
+	.aside {
+		position: absolute;
+		top: 48px;
+		right: -$aside-width - 64px;
+		width: $aside-width;
+		.title {
+			text-transform: uppercase;
+			color: $grey500;
+			margin: 24px 0 16px;
+			font-size: 1.2em;
+		}
+		.taxonomy {
+			font-size: 0.8em;
+		}
+	}
+
+	.content {
+		max-width: $paragraph-width;
+		.sections {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			margin: 0 -4px;
+
+			.section-link {
+				height: 144px;
+				margin: 4px;
+				flex: 1 0 0;
+				min-width: 320px;
+			}
+		}
+	}
+
+	padding: 0 0 288px;
+}

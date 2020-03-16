@@ -1,0 +1,87 @@
+{{ define "main" }}
+<div class="content home-content">
+	{{ range first 1 (where .Site.Sections ".Title" "==" "LeOS") }}
+	<section id="slide" class="home-slide">
+		<div class="wrapper">
+			<div class="left">
+				<h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+				<p>{{ .Description }}</p>
+			</div>
+			<div class="right">
+			{{ range where .Paginator.Pages.ByWeight ".Params.sticky" true }}
+			<article class="article">
+				<h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+				<p>{{ .Params.details }}</p>
+			</article>
+			{{end}}
+			</div>
+		</div>
+		<div class="overlay">
+			<p>A bit more than just a Software Studio</p>
+			<a href="/about/">About Löwenware</a>
+		</div>
+	</section>
+	{{end}}
+	<div class="home-projects">
+		<section class="section-link left">
+			<a href="/aisl/" class="boxed">
+				<h1>AISL</h1>
+				<p>Back end solution</p>
+			</a>
+		</section>
+
+		<section class="section-link middle">
+			<a href="/dotrix/" class="boxed">
+					<h1>Dotrix</h1>
+					<p>Sketchbook for creators</p>
+			</a>
+		</section>
+
+		<section class="section-link right">
+			<a href="http://github.com/lowenware/" class="boxed">
+				<h1>Open Source</h1>
+				<p>Discover on Github</p>
+			</a>
+		</section>
+	</div>
+	<section class="section posts">
+		<div class="title">Recent posts</div>
+		{{ range (first 10 (where .Site.Pages ".Params.publication" true)) }}
+		<article class="article">
+			<a href="{{ .Permalink }}">{{ .Title }}</a> &ndash;
+			<span class="timestamp">{{ .Date.UTC.Format "January 02, 2006" }}</span>
+			<div class="taxonomy">{{- partial "categories.html" . -}}</a> / <span class="tags">{{- partial "tags.html" . -}}</span></div>
+		</article>
+		{{end}}
+		<a href="/blog/" class="button">Go to blog</a>
+	</section>
+
+	<section class="services">
+		<div class="dark-bg">
+			<div class="left">
+				<h1>Services</h1>
+			</div>
+
+			<div class="middle">
+				<p>Looking for a subcontractor? Lets make something great together!</p>
+			</div>
+
+			<div class="right">
+				<a href="/contact/?get-started" class="button">Get Started</a>
+			</div>
+		</div>
+		<div class="arrow"></div>
+
+		<div class="technologies">
+			<img class="icon" src="/icon/angular.svg" />
+			<img class="icon" src="/icon/arm.svg" />
+			<img class="icon" src="/icon/c-2975.svg" />
+			<img class="icon" src="/icon/html5.svg" />
+			<img class="icon" src="/icon/python-5.svg" />
+			<img class="icon" src="/icon/react.svg" />
+			<img class="icon" src="/icon/rust.svg" />
+			<img class="icon" src="/icon/typescript.svg" />
+		</div>
+	</div>
+</div>
+{{ end }}

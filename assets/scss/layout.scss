@@ -1,0 +1,146 @@
+.main-overlay {
+	min-width: 320px;
+}
+
+.main-wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+}
+
+.logo {
+	fill: $superdark;
+	display: block;
+	float: left;
+	width: 64px;
+	height: 64px;
+	margin: 12px;
+
+	@media screen and (min-width: 980px) {
+		width: 80px;
+		height: 80px;
+		margin: 32px;
+	}
+
+	@media screen and (min-width: 980px) and (min-height: 640px){
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+}
+
+.text-logo {
+	font-size: 1.2em;
+	font-weight: normal;
+	color: $dark;
+	line-height: 24px;
+	text-align: center;
+	margin: 0 88px;
+	min-width: 144px;
+	height: 88px;
+
+	&::before {
+		display: block;
+		width: 1px;
+		height: 28px;
+		margin: 0 auto 4px;
+		background-color: $grey600;
+		content: '';
+	}
+
+	@media screen and (min-width: 980px) {
+		font-size: 1.6em;
+		line-height: 32px;
+		text-align: center;
+		height: 144px;
+		margin: 0 144px;
+
+		&::before {
+			height: 52px;
+		}
+	}
+}
+
+.footer {
+	background-color: $superdark;
+	z-index: 0;
+	clear: left;
+	/* margin-top: -288px; */
+	position:relative;
+
+	.upper {
+		background-color: $white;
+		position: relative;
+	}
+
+	.footer-logo {
+		display: none;
+		position: absolute;
+		bottom: 70px;
+		left: 0px;
+		z-index: 3000;
+		transform: rotate(-90deg);
+		transform-origin: center center;
+		font-size: 1.6em;
+		text-align: left;
+		line-height: 144px;
+		text-align: left;
+	}
+
+	.social {
+		width: 200px;
+		margin: 0 auto;
+		height: 70px;
+
+		a {
+			display: block;
+			float: left;
+			width: 50px;
+			height: 50px;
+		}
+
+		.icon {
+			padding: 13px;
+		}
+	}
+
+	.lower {
+		text-align: center;
+
+		.wrapper {
+			padding: 10px 0;
+			line-height: 18px;
+			font-size: 0.8em;
+		}
+	}
+
+	@media screen and (min-width: 980px) {
+	  margin-top: -288px;
+		height: 288px;
+		position: relative;
+		z-index: 0;
+
+		.upper {
+			margin-left: 144px;
+			height: 144px;
+			position: relative;
+		}
+
+		.lower {
+			padding: 45px 0 0;
+		}
+
+		.footer-logo {
+			display: block;
+		}
+
+		.social {
+			position: absolute;
+			top: 55px;
+			right: 140px;
+		}
+	}
+}
+
+
+

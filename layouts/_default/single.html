@@ -1,0 +1,26 @@
+{{ define "main" }}
+	<main class="content article text-content blog-post">
+		{{- partial "breadcrumbs.html" . -}}
+		<div class="taxonomy header">
+			<h1>{{- .Title -}}</h1>
+			{{ if eq .Params.publication true }}
+			By <a href="/about/" class="author">{{ .Params.author }}</a>
+			{{- partial "categories.html" . -}}
+			<span class="timestamp"> / {{ .Date.UTC.Format "January 02, 2006" }}</span>
+			{{ end }}
+		</div>
+		{{- .Content -}}
+		<div class="tags">{{- partial "tags.html" . -}}</div>
+		{{ if .Params.comments }}
+		<section class="comments">
+		<script src="https://utteranc.es/client.js"
+			repo="lowenware/website"
+			issue-term="url"
+			label="comment"
+			theme="github-light"
+			crossorigin="anonymous"
+			async></script>
+		</section>
+		{{ end }}
+	</main>
+{{ end }}

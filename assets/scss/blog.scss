@@ -1,0 +1,33 @@
+.blog-content {
+	width: $paragraph-width;
+	margin: 0 auto;
+
+	.aside {
+		float: left;
+		width: $aside-width;
+		h1 {
+			padding: 0;
+		}
+		.title{
+			margin: 24px 0 16px;
+			font-size: 1.2em;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+	}
+	.content {
+		margin-left: $aside-width;
+	}
+
+}
+
+.blog-post {
+	.tags {
+		padding: 24px 0 16px;
+	}
+}
