@@ -31,7 +31,7 @@ mkdir my-new-app && cd "$_" && git init
 # add AISL as a submodule
 git submodule add https://github.com/lowenware/aisl.git
 # initialize and start your application
-make -f aisl/Makefile.proj start
+make -f aisl/Makefile quickstart
 ```
 
 ## License
@@ -39,7 +39,7 @@ make -f aisl/Makefile.proj start
 AISL is free for both commercial and non-commercial use, being distributed under terms of [CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0/).
 
 
-## Handbook
+## Documentation
 
 AISL is written in pure C and can be compiled as a shared or static library.
 It is robust, without dependencies and has clear documented API.

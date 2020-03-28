@@ -2,8 +2,10 @@
 <div class="list-content">
 {{ if and (.Params.project) (or (.Params.project.tag) (.Params.project.github)) }}
 <aside class="aside">
+{{ if .Params.project.version }}
 <div class="title">Latest version</div>
 <p>{{ .Params.project.version }}</p>
+{{ end }}
 {{ if .Params.project.github }}
 <div class="title">Repository</div>
 <div class="github-repo">

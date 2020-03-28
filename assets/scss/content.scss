@@ -53,7 +53,6 @@
 	}
 }
 
-
 .text-content {
 	max-width: $paragraph-width;
 	margin: 0 auto;
@@ -67,6 +66,13 @@
 .content {
 	.header {
 		padding: 0 0 24px;
+	}
+
+	blockquote {
+		border-left: 3px solid $grey300;
+		padding: 0 16px;
+		margin: 16px 0;
+		font-style: italic;
 	}
 
 	h1 {

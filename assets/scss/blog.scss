@@ -24,6 +24,20 @@
 		margin-left: $aside-width;
 	}
 
+	.article {
+		padding: 0 0 32px;
+	}
+
+	.summary {
+		p {
+			display: inline;
+		}
+
+		.read-more-link {
+			display: inline-block;
+		}
+	}
+
 }
 
 .blog-post {

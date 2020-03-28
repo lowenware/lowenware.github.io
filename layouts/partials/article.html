@@ -4,5 +4,7 @@
 	<span class="tags">{{- partial "tags.html" . -}}</span>
 </div>
 <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-{{ .Summary | safeHTML }}
-{{ if .Truncated }}<a href="{{ .Permalink }}" class="read-more-link">Read More…</a>{{ end }}
+<div class="summary">
+	{{ .Summary | safeHTML }}
+	{{ if .Truncated }}<a href="{{ .Permalink }}" class="read-more-link">Read More…</a>{{ end }}
+</div>

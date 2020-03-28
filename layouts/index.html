@@ -1,16 +1,16 @@
 {{ define "main" }}
 <div class="content home-content">
-	{{ range first 1 (where .Site.Sections ".Title" "==" "LeOS") }}
+	{{ range first 1 (where .Site.Sections ".LinkTitle" "==" "LeOS") }}
 	<section id="slide" class="home-slide">
 		<div class="wrapper">
 			<div class="left">
-				<h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-				<p>{{ .Description }}</p>
+				<h1><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></h1>
+				<p>{{ .Params.details }}</p>
 			</div>
 			<div class="right">
 			{{ range where .Paginator.Pages.ByWeight ".Params.sticky" true }}
 			<article class="article">
-				<h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+				<h1><a href="{{ .Permalink }}">{{ .LinkTitle }}</a></h1>
 				<p>{{ .Params.details }}</p>
 			</article>
 			{{end}}
