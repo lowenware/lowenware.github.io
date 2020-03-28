@@ -148,9 +148,15 @@ p code, ul code {
 	color: $dark;
 }
 
-pre code {
-	font-family: monospace;
-	padding: 16px;
+.highlight {
+	pre {
+		overflow: auto;
+		border-radius: 4px;
+		code {
+			font-family: monospace;
+			padding: 16px;
+		}
+	}
 }
 
 
