@@ -4,9 +4,10 @@
 	position: relative;
 
 	.aside {
+		display: none;
 		position: absolute;
 		top: 48px;
-		right: -$aside-width - 64px;
+		right: 0px;
 		width: $aside-width;
 		.title {
 			text-transform: uppercase;
@@ -17,10 +18,12 @@
 		.taxonomy {
 			font-size: 0.8em;
 		}
+		@media screen and (min-width: 640px) {
+			display: block;
+		}
 	}
 
 	.content {
-		max-width: $paragraph-width;
 		.sections {
 			display: flex;
 			flex-wrap: wrap;
@@ -35,7 +38,18 @@
 				min-width: 320px;
 			}
 		}
+
 	}
 
-	padding: 0 0 288px;
+	padding-left: 16px;
+	padding-right: 16px;
+
+	@media screen and (min-width: 640px) {
+		padding-right: $aside-width + 64px;
+	}
+
+	@media screen and (min-width: 980px) {
+		padding-bottom: 288px;
+		padding-left: $aside-width + 64px;
+	}
 }

@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="list-content">
+<div class="{{ if .Params.className}}{{ .Params.className }}{{ end }} list-content">
 {{ if and (.Params.project) (or (.Params.project.tag) (.Params.project.github)) }}
 <aside class="aside">
 {{ if .Params.project.version }}
