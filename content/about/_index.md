@@ -9,48 +9,39 @@ sticky: false
 publication: false
 navigation: true
 comments: false
+className: "page-about"
 ---
 
-Project Löwenware started its life in year 2014, when its founder Ilja Kartashov
-decided to create a tool for high-performance web applications development. That
-was a multithread synchronnous solution called WebStuff those days. Active
-development process has turned it into completely new tool named [AISL](/aisl/).
-Commercial interest to this solution allowed to establish Löwenware company in
-Czech Republic in 2017.
+![Ilja K.](/about/ik.jpg)
 
-## Performance does matter
+Hello! My name is Ilya Kartashov and I am glad to welcome you in Löwenware - my software studio
+established in 2017.
 
-We live in the era of high-end computers that can provide incredible user
-experience solving our daily tasks. Unfortunately mainstream development tools
-are focused more on making programmer's life easier, than on product performance
-. At the same time we have older technologies optimized for much less efficient
-hardware. They require higher skill, more time and efforts, providing you as a
-developer full control over hardware, making possible to keep things simple and 
-in the end to build fast and usable application. With no doubt, we prefer just 
-such technologies.
+I have written my first program in QBasic when I was 8 years old and fell in
+love with programming. Since that time I studied a lot about computer sience, networking,
+web technologies and operating systems. Nowdays I offer my skills to various companies as external
+software and firmware developer. In spare time I contribute to open source projects and develop
+[LeOS](/leos/) -- operating system for ARM 64 and [AISL](/aisl/) -- library for web back ends.
 
-While avoiding usage of some fasionable tools, keeping simplicity and some kind
-of minimalism in our projects, we are not conservators, neither nerds. We are
-quite open to shiny wowing stuff, but we just think it must be reached in a bit
-other way.
+## Performance Does Matter
+
+Being and adept of high performance and optimization I always care a lot about how my applications 
+work and how effective they are. I believe that if an end user have to wait for a web page longer
+than it is required for downloading its content, then something was done terribly wrong.
+
+As a developer I am very careful with choice of technologies and algorithms I use. And process of
+finding the best algorithm for the task is what I enjoy the most in my work.
 
 ## Openness
 
-By opening source codes we allow other developers to contribute to our projects
-and at the same time we contribute to work of other people who may use some of
-our workouts and ideas. Such collaboration between developers all over the world
-pushes technology progress forward and we like it.
+I think openness is a key to a bright future of computer technologies. Collaboration of developers over
+the world pushes the progress forward, bringing up better ideas and solutions. Wishing to be a part
+of it, I publish my work on GitHub and contribute to other's projects.
 
-At the same time we are open for commercial projects and investing incomes into
-our open solutions development and support.
+## A Bit More Than Just a Software Studio
 
-## Creativity
-
-We are working on many interesting projects and not all of them are applications
-or libraries. In 2018 we've lanuched production of [Dotrix](/dotrix/) books that
-we wanted to use in our team and actually we use them a lot nowadays. We like 
-them that much that we decided to spread them over other designers and engineers.
-
-In 2019 we've started our experiments with video processing, sound recording
-and OpenGL development that will turn into new projects and new content in some
-nearest future.
+Löwenware is a very small studio. But it has a big goal: to create a 100% open source computer,
+that will serve needs of humanity with respect of personal privacy and security, that will be
+fast, robust and user-friendly, with a comfortable environment for creators and flexible policy
+of software distribution. Today it is more than real and it is only question of the efforts for a
+dream to become true.
