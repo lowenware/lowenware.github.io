@@ -14,7 +14,7 @@ comments: true
 
 From this post you can learn how to write simple bare metal program in Rust for
 ARM AArch64 architecture, run it with QEMU on virtual device, attach a debugger
-and disassembly it.
+and disassemble it.
 
 <!--more-->
 
@@ -52,7 +52,7 @@ Now you should have following set of tools installed on your system:
 In addition to that you will need:
 
 * [QEMU](https://qemu.org/) - processor emulator
-* AArch64 bare-metal target [GCC toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads) 
+* AArch64 bare metal target [GCC toolchain](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-a/downloads) 
 * Multiarch [GNU debugger](https://www.gnu.org/software/gdb/) (optional, `aarch64-none-elf-gdb` from the toolchain could be used instead)
 
 

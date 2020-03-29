@@ -17,7 +17,7 @@ Your access to and use of the Service is conditioned on your acceptance of and c
 
 ## Privacy
 
-See "[Privacy Statement](/privacy-statement.html)"
+See "[Privacy Statement](/privacy-statement/)"
 
 ## Copyrights
 

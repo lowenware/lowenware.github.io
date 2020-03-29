@@ -18,9 +18,9 @@ comments: false
 typedef struct aisl_client * AislClient;
 ```
 
-Pointer of this type represents HTTP client connected to an [AislServer](/aisl/doc/server/).
+Pointer of this type represents HTTP client connected to an [AislServer](/aisl/handbook/server/).
 
-`AislClient` can be a source of the following [events](/aisl/doc/events-model/):
+`AislClient` can be a source of the following [events](/aisl/handbook/events-model/):
 
 *   `AISL_EVENT_CLIENT_CONNECT`
 *   `AISL_EVENT_CLIENT_DISCONNECT`
@@ -38,7 +38,7 @@ Pointer of this type represents HTTP client connected to an [AislServer](/aisl/d
 
 ### Function aisl\_client\_get\_server
 
-Gets an [AislServer](/aisl/doc/server/) associated with a valid `AislClient`
+Gets an [AislServer](/aisl/handbook/server/) associated with a valid `AislClient`
 
 ```c
 AislServer
@@ -51,7 +51,7 @@ aisl_client_get_server(AislClient client);
 
 #### Return value
 
-Associated [AislServer](/aisl/doc/server/)
+Associated [AislServer](/aisl/handbook/server/)
 
 ---
 
@@ -79,7 +79,7 @@ Returns no value.
 
 Gets the HTTP version of the communication with `AislClient`. For just 
 connected clients version is set to default
-[AISL_HTTP_1_0](/aisl/doc/enumerations/#type-aislhttpversion).
+[AISL_HTTP_1_0](/aisl/handbook/enumerations/#type-aislhttpversion).
 
 ```c
 AislHttpVersion
@@ -92,14 +92,14 @@ aisl_client_get_http_version(AislClient client);
 
 #### Return value
 
-[AislHttpVersion](/aisl/doc/enumerations#type-aislhttpversion) constant
+[AislHttpVersion](/aisl/handbook/enumerations#type-aislhttpversion) constant
 
 ---
 
 ### Function aisl\_client\_disconnect
 
 Closes client's socket immediately. Resources will be cleaned up automatically
-by [aisl_run_cycle](/aisl/doc/instance/#function-aisl_run_cycle) call.
+by [aisl_run_cycle](/aisl/handbook/instance/#function-aisl_run_cycle) call.
 
 ```c
 void

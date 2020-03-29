@@ -201,7 +201,7 @@ a special macro `AISL_AUTO_LENGTH`, that could be passed instead of actual
 length.
 
 Function `aisl_write` writes data of defined length to `AislStream`. It is not
-the only possibility. Refer [Handbook](/aisl/handbook/aisl-stream-type/) for
+the only possibility. Refer [Handbook](/aisl/handbook/stream/) for
 details.
 
 A call to `aisl_flush` tells the engine that response is ready and could be sent
@@ -256,7 +256,7 @@ something like this:
 ## What next?
 
 To build more complex applications, developer should first understand how
-event model works. [Handbook](/aisl/handbook/aisl-event-structure.md) is a good
+event model works. [Handbook](/aisl/handbook/events-model/) is a good
 start point for that. In the next tutorial it will be explained with more details.
 
 ## Usefull links

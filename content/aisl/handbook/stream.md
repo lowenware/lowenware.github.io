@@ -19,7 +19,7 @@ typedef struct aisl_stream * AislStream;
 ```
 
 A pointer of this type represents a sequence of a request from 
-[AislClient](/aisl/doc/client/) and a response from the application. First by 
+[AislClient](/aisl/handbook/client/) and a response from the application. First by 
 handling events you can get any or all the data from the HTTP request being
 parsed, and then write the response to the stream.
 
@@ -31,7 +31,7 @@ Application must respect the order of write calls to keep response structure:
 response code, headers, body. For more information refer description of
 [response functions](#response-functions).
 
-`AislStream` can be a source of the following [events](/aisl/doc/events-model/#type-aislevent):
+`AislStream` can be a source of the following [events](/aisl/handbook/events-model/#type-aislevent):
 
 *   `AISL_EVENT_STREAM_OPEN`
 *   `AISL_EVENT_STREAM_HEADER`
@@ -68,7 +68,7 @@ response code, headers, body. For more information refer description of
 
 ### Function aisl\_get\_server
 
-Gets [AislServer](/aisl/doc/server/) associated with `AislStream`
+Gets [AislServer](/aisl/handbook/server/) associated with `AislStream`
 
 ```c
 AislServer
@@ -81,13 +81,13 @@ aisl_get_server(AislStream stream);
 
 #### Return value
 
-Associated [AislServer](/aisl/doc/server/)
+Associated [AislServer](/aisl/handbook/server/)
 
 ---
 
 ### Function aisl\_get\_get\_client
 
-Gets [AislClient](/aisl/doc/client/) associated with `AislStream`
+Gets [AislClient](/aisl/handbook/client/) associated with `AislStream`
 
 ```c
 AislClient
@@ -100,13 +100,13 @@ aisl_get_client(AislStream stream);
 
 #### Return value
 
-Associated [AislClient](/aisl/doc/client/)
+Associated [AislClient](/aisl/handbook/client/)
 
 ---
 
 ### Function aisl\_get\_instance
 
-Gets [AislInstance](/aisl/doc/instance/) associated with `AislStream`
+Gets [AislInstance](/aisl/handbook/instance/) associated with `AislStream`
 
 ```c
 AislInstance
@@ -119,7 +119,7 @@ aisl_get_instance(AislStream stream);
 
 #### Return value
 
-Associated [AislInstance](/aisl/doc/instance/)
+Associated [AislInstance](/aisl/handbook/instance/)
 
 
 ---
@@ -158,7 +158,7 @@ aisl_get_http_version(AislStream stream);
 
 #### Return value
 
-[AislHttpVersion](/aisl/doc/enumerations/#type-aislhttpversion) constant
+[AislHttpVersion](/aisl/handbook/enumerations/#type-aislhttpversion) constant
 
 ---
 
@@ -263,7 +263,7 @@ aisl_response(AislStream stream, AislHttpResponse status_code, uint64_t content_
 #### Arguments
 
 *   `stream` — `AislStream` pointer
-*   `status_code` — constant from [AislHttpResponse](/aisl/doc/enumerations/#type-aislhttpresponse) enumeration
+*   `status_code` — constant from [AislHttpResponse](/aisl/handbook/enumerations/#type-aislhttpresponse) enumeration
 *   `content_length` — content length in bytes or `AISL_AUTO_LENGTH` to calculate it on the fly
 
 #### Return value

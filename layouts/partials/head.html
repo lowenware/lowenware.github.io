@@ -17,7 +17,7 @@
 		{{ $style := resources.Get "scss/main.scss" | toCSS $cssOpts }}
 		<link href="{{ $style.Permalink }}" rel="stylesheet" />
 	{{ else }}
-		{{ $style := resources.Get "scss/main.scss" | toCSS $cssOpts | postCSS | minify | fingerprint }}
+		{{ $style := resources.Get "scss/main.scss" | toCSS $cssOpts | minify | fingerprint }}
 		<link href="{{ $style.Permalink }}" rel="stylesheet" />
 	{{ end }}
 
