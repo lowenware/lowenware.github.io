@@ -18,13 +18,13 @@ comments: false
 typedef struct aisl_server * AislServer;
 ```
 
-Pointer of this type represents an HTTP server. Memory allocation and release
-are done inside the library according to provided [configuration](/aisl/doc/configuration/)
-for [aisl_new](/aisl/instance/#function-aisl_new) function.
+Pointer of this type represents HTTP server. Memory allocation and release
+are done inside the library according to provided [configuration](/aisl/handbook/configuration/)
+for [aisl_new](/aisl/handbook/instance/#function-aisl_new) function.
 
 ## Events
 
-`AislServer` can be a source of the following [events](/aisl/doc/events-model/#type-aislevent):
+`AislServer` can be a source of the following [events](/aisl/handbook/events-model/#type-aislevent):
 
 *   `AISL_EVENT_SERVER_READY`
 *   `AISL_EVENT_SERVER_ERROR`
@@ -39,7 +39,7 @@ for [aisl_new](/aisl/instance/#function-aisl_new) function.
 
 ### Function aisl\_server\_get\_instance
 
-Gets [AislInstance](/aisl/doc/instance/) associated with `AislServer`
+Gets [AislInstance](/aisl/handbook/instance/) associated with `AislServer`
 
 ```c
 AislInstance
@@ -52,7 +52,7 @@ aisl_server_get_instance(AislServer server);
 
 #### Return value
 
-Associated [AislInstance](/aisl/doc/instance/)
+Associated [AislInstance](/aisl/handbook/instance/)
 
 ---
 

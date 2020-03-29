@@ -13,7 +13,7 @@ comments: false
 
 ---
 
-When application allocates new [AislInstance](/aisl/doc/instance), it shall 
+When application allocates new [AislInstance](/aisl/handbook/instance), it shall 
 provide a [callback](#type-aislcallback) that will handle events triggered by
 AISL.
 
@@ -30,7 +30,7 @@ First argument `const struct aisl_evt *evt` contains all necessary data for even
 handling.
 
 Second argument is a user-defined pointer, that AISL will pass through form
-[configuration](/aisl/doc/configuration/) structure.
+[configuration](/aisl/handbook/configuration/) structure.
 
 ```c
 
@@ -44,26 +44,26 @@ struct aisl_evt {
 
 Application should check `code` value and cast `source` pointer as an 
 appropriate type. Property `status` let application to
-know the [status](/aisl/doc/enumerations/#type-aislstatus) of operation that
+know the [status](/aisl/handbook/enumerations/#type-aislstatus) of operation that
 triggered the event.
 
 ## Server events
 
-Events that has [AislServer](/aisl/doc/server/) as their source.
+Events that has [AislServer](/aisl/handbook/server/) as their source.
 
 * `AISL_EVENT_SERVER_READY` - server started at defined interface and port
 * `AISL_EVENT_SERVER_ERROR` - error occured during server workflow
 
 ## Client events
 
-Events that has [AislClient](/aisl/doc/client/) as their source.
+Events that has [AislClient](/aisl/handbook/client/) as their source.
 
 * `AISL_EVENT_CLIENT_CONNECT` - client connected
 * `AISL_EVENT_CLIENT_DISCONNECT` - client disconnected
 
 ## Stream events
 
-Events that has [AislStream](/aisl/doc/stream/) as their source.
+Events that has [AislStream](/aisl/handbook/stream/) as their source.
 
 * `AISL_EVENT_STREAM_OPEN` - HTTP request initiated by client
 * `AISL_EVENT_STREAM_HEADER` - HTTP header received from client
