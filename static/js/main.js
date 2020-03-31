@@ -499,8 +499,8 @@ $.main(function(){
 		targ.switchClass('opened');
 	});
 	// modules
-	switch($(document.documentElement).attribute('data-view')) {
-	case 'contact':
+	switch (window.location.pathname) {
+	case '/contact/':
 		gCore.mod = new Contact();
 		break;
 	}
