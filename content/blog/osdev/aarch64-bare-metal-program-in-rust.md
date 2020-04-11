@@ -12,7 +12,7 @@ publication: true
 comments: true
 ---
 
-From this post you can learn how to write simple bare metal program in Rust for
+From this post you can learn how to write a simple bare metal program in Rust for
 ARM AArch64 architecture, run it with QEMU on virtual device, attach a debugger
 and disassemble it.
 
@@ -21,12 +21,12 @@ and disassemble it.
 ## Introduction
 
 Rust is a modern programming language positioned as safe, productive and
-suitable for system level development. It comes with own packaging system and
+suitable for system level development. It comes with its own packaging system and
 various utilities for management, compilation, linking and even code formatting.
 The language is very versatile and multifaceted, so it could take some time to
 understand and get used to it.
 
-I wanted to try it for programming for ARM AArch64, but realised that there is
+I wanted to try it for ARM AArch64 programming, but realised that there is
 not much information about usage of Rust for this architecture and all examples
 that I have found were out-of-date and required some additional efforts to make
 them working. So I decided to write about how to get started with Rust and 
@@ -36,14 +36,14 @@ AArch64 with a hope it will be useful for somebody else.
 
 [Install rustup](https://www.rust-lang.org/tools/install) - a toolchain manager
 for Rust. The process depends on your operating system, but if you are on Linux
-I would recommend to start from searching for package `rustup` in your native
+I would recommend to start from searching for the `rustup` package in your native
 package manager. Once you have it installed, execute
 
 ```shell
 rustup update
 ```
 
-Now you should have following set of tools installed on your system:
+Now you should have the following set of tools installed on your system:
 * rustup -- toolchain installer
 * rustc -- compiler
 * rust-gdb -- GNU debugger
@@ -58,8 +58,8 @@ In addition to that you will need:
 
 ### Installing Toolchain
 
-To compile a code for AArch64 we will need [nightly](https://github.com/rust-lang/rustup#working-with-nightly-rust)
-toolchain installed. To install it and set as default execute following command
+To compile a code for AArch64, we will need the [nightly](https://github.com/rust-lang/rustup#working-with-nightly-rust)
+toolchain installed. To install it and set it as default, execute the following command :
 
 ```shell
 rustup default nightly
@@ -90,7 +90,7 @@ rustup component add rust-src
 
 ## Starting a Project
 
-Now we have all the tools we need. To start a new project `cargo` utility could
+Now we have all the tools we need. To start a new project, the `cargo` utility can
 be used. Run it as follows
 
 ```shell
@@ -101,7 +101,7 @@ cargo new aarch64-bare-metal --bin --edition 2018
 * `--bin` flag says we are about to create an application (not library)
 * `--edition 2018` - structure should correspond [2018's cargo edition](https://doc.rust-lang.org/nightly/edition-guide/rust-2018/index.html)
 
-Structure should be something like this:
+The file structure should be something like this:
 
 ```shell
 + aarch64-bare-metal/
@@ -110,12 +110,12 @@ Structure should be something like this:
 | - Cargo.toml
 ```
 
-If you have [git](https://git-scm.com/) installed, you will find there is also
+If you have [git](https://git-scm.com/) installed, you will also find a
 preinitiated repository inside.
 
 ## Writing a Program
 
-Open your favorite text editor and bring content of newly created `src/main.rs`
+Open your favorite text editor and bring contents of the newly created `src/main.rs`
 file to this one:
 
 ```rust
@@ -141,30 +141,30 @@ pub extern "C" fn not_main() {
 }
 ```
 
-Several things should be commented out here. First of all we use `#![no_std]` to
-disable linking with standard library and `#![no_main]` to use other entry point
-to our application than `not_main` function. Actual entry point will be defined
-in _linker script_ as `_start` function and implemented in `start.s` assembly
+Several things should be commented out here. First of all, we use `#![no_std]` to
+disable linking with the standard library and `#![no_main]` to use an entry point
+to our application other than the `not_main` function. The actual entry point will be defined
+in _linker script_ as `_start` function and implemented in the `start.s` assembly
 file. It has to be done like this, because our program will start up on CPU boot
-when there is no OS and stack pointer defined yet, so we have to do it manualy in 
+when there is no OS and stack pointer defined yet, so we have to do it manually in 
 assembly language.
 
-To use inline assembly we should enable `global_asm` feature and then we 
+To use inline assembly we should enable the `global_asm` feature and then we 
 can include whole file `start.s` using `include_str`.
 
-We use `#[no_mangle]` attribute to disable [name mangling](https://en.wikipedia.org/wiki/Name_mangling)
-and keep keep `not_main` function's symbol name as is at the same time with `extern "C"`
-to use [C calling convention](https://en.wikipedia.org/wiki/Calling_convention),
+We use the `#[no_mangle]` attribute to disable [name mangling](https://en.wikipedia.org/wiki/Name_mangling)
+and keep the `not_main` function's symbol name as-is, at the same time with `extern "C"`
+to use the [C calling convention](https://en.wikipedia.org/wiki/Calling_convention),
 so we can call the function outside of Rust code.
 
-And the most significant part of our program is concentrated inside `not_main`
-function. It performs character by character writing of `AArch64 Bare Metal`
-string at address `0x0900_0000` which is a memory mapped address of
+And the most significant part of our program is concentrated inside the `not_main`
+function. It performs a character by character writing of the `AArch64 Bare Metal`
+string at address `0x0900_0000`, which is a memory mapped address of the
 UART0 peripheral of QEMU.
 
 ---
 
-Now create next rust file `panic.rs` in the same folder containing this:
+Now create next the rust file `panic.rs` in the same folder, containing this:
 
 ```rust
 use core::panic::PanicInfo;
@@ -175,21 +175,21 @@ fn on_panic(_info: &PanicInfo) -> ! {
 }
 ```
 
-We have to define `on_panic` function with `#[panic_handler]` attribute
-as a handler that will be used by compiler in _panic_ situations. It is worth
-to mention that Rust implements tiered [Unwinding](https://doc.rust-lang.org/nomicon/unwinding.html)
-error handling process, responsible for calling destructors and releasing memory
-in case of panic and continue execution of the application. It is a quite
+We have to define an `on_panic` function with a `#[panic_handler]` attribute
+as a handler that will be used by the compiler in _panic_ situations. It is worth
+to mention that Rust implements the tiered [Unwinding](https://doc.rust-lang.org/nomicon/unwinding.html)
+error handling process, responsible for calling destructors, releasing memory
+in case of panic and continuing the execution of the application. It is a quite
 complicated function that requires OS-dependent libraries, but for now we have 
-no choice other than bypass it.
+no other choice than to bypass it.
 
 > I would prefer to keep this handler in `main.rs` for simplicity, but for some reason in that
-> case compiler never uses a linker script (we will prepare it soon). And without it the program
-> will be compiled for wrong entry address and may not work properly.
+> case the compiler never uses a linker script (we will prepare it soon). And without it the program
+> will be compiled for a wrong entry address and may not work properly.
 
 ---
 
-Now create a file `start.s` inside `src/` folder with following cotent:
+Now create a file `start.s` inside the `src/` folder with the following content:
 ```rust
 .globl _start
 .extern LD_STACK_PTR
@@ -208,15 +208,15 @@ system_off:
     hvc     #0
 ```
 
-It is very small and simple. First we define `_start` symbol as global, then
-perform initialization of stack with address `0x40004000` and call `not_main`
-function defined in `main.rs`. Once it returns execution goes to `system_off`
-lable where CPU shutdown is called using hypervisor call instruction `hvc`.
+It is very small and simple. First we define the `_start` symbol as global, then
+initialize the stack with the address `0x40004000` and call the `not_main`
+function defined in `main.rs`. Once it returns, the execution goes to the `system_off`
+label, where a CPU shutdown is called using the hypervisor call instruction `hvc`.
 
 ## Writing Linker Script
 
 For our program we need a very simple linker script. Create a file named `aarch64-qemu.ld` in
-project's root folder with this content:
+the project root folder with this content:
 
 ```plaintext
 ENTRY(_start)
@@ -237,27 +237,27 @@ SECTIONS
 
 There are two important things here:
 
-* With `ENTRY(_start)` symbol `_start` from `start.s` file is being declared as entry
+* With the `ENTRY(_start)` symbol `_start` from `start.s`, the file is being declared as an entry
 point to our program, the point from which execution must begin.
 * `. = 0x40080000;` is a memory address, where our executable will be loaded by
-QEMU. How to find out that address and why it is important, I will explain in my next post about
+QEMU. To find out that address and why it is important, I will explain in my next post about
 programming MMU.
 
 ## Configuring Target
 
-To get full list of supported targets you can execute `rustc --print target-list`. Common practice
-of targets naming is usage of [triples](https://clang.llvm.org/docs/CrossCompilation.html#target-triple)
+To get a full list of supported targets, you can execute `rustc --print target-list`. A common practice
+of targets naming is usage of [triples](https://clang.llvm.org/docs/CrossCompilation.html#target-triple), 
 consisting of <CPU Architecture>-<Vendor name>-<OS>-<ABI>.
 
-For bare metal program `aarch64-unknown-none` is preferable. For cross build we will need to
-provide target's specification in JSON format. Next command will get default specification for 
-`aarch64-unknown-none` and store it in file `aarch64-unknown-none.json`:
+For bare metal programs, `aarch64-unknown-none` is preferable. To cross build, we will need to
+provide the target specifications in a JSON format. The command below will get the default specification for 
+`aarch64-unknown-none` and store it in the file `aarch64-unknown-none.json`:
 
 ```shell
 rustc -Z unstable-options --print target-spec-json --target aarch64-unknown-none > aarch64-unknown-none.json
 ```
 
-Open that file in text editor and add following snippet inside root object, to ask Rust compile 
+Open that file in a text editor and add the following snippet inside the root object, to ask the Rust compiler
 to use our [linker script](#writing-linker-script):
 ```json
     "pre-link-args": {
@@ -265,7 +265,7 @@ to use our [linker script](#writing-linker-script):
     },
 ```
 
-So in the end content of your `aarch64-unknown-none.json` file should look like this:
+So, in the end, contents of your `aarch64-unknown-none.json` file should look like this:
 
 ```json
 {
@@ -304,7 +304,7 @@ So in the end content of your `aarch64-unknown-none.json` file should look like 
 
 ## Build and Run
 
-Finally we are ready to compile the program! At this stage our project strructure should look like
+Finally we are ready to compile the program! At this stage our project structure should look like
 this:
 
 ```shell
@@ -318,29 +318,29 @@ this:
 | - aarch64-qemu.ld
 ```
 
-And building for _dev_ profile should be as easy as:
+And building for the _dev_ profile should be as easy as:
 
 ```shell
 cargo xbuild --target=aarch64-unknown-none.json
 ```
 
-And for _release_ profile:
+And for the _release_ profile:
 
 ```shell
 cargo xbuild --target=aarch64-unknown-none.json --release
 ```
 
 If you are curious about how `sysroot` is being managed by _xbuild_, you can add `-v` to these 
-commands flag for verbose output.
+command flags for verbose output.
 
-After building `target/` folder will appear in project's root and compiled executables could be 
+After building, the `target/` folder will appear in the project root folder and compiled executables can be 
 found inside:
 * `target/aarch64-unknown-none/debug/aarch64-bare-metal`: debug build
 * `target/aarch64-unknown-none/release/aarch64-bare-metal`: release build
 
-Difference between these two builds is that one from `release` folder is optimised and does not
-contain debug symbols, while `debug` one does. Both of them are ELF files that are ready to be
-executed in QEMU called with following parameters:
+The difference between these two builds is that the one from the `release` folder is optimised and does not
+contain debug symbols, while the `debug` one does. Both of them are ELF files that are ready to be
+executed in QEMU and called with the following parameters:
 
 ```shell
 qemu-system-aarch64 -machine virt \
@@ -351,7 +351,7 @@ qemu-system-aarch64 -machine virt \
 
 ```
 
-You shall see in terminal following output from our program:
+You shall see in terminal the following output from our program:
 
 ```shell
 AArch64 Bare Metal
@@ -360,17 +360,17 @@ AArch64 Bare Metal
 ## Disassembly
 
 Disassembly is a very important part of low level development. You may want to use it for
-troubleshooting, analysing and optimisation. This requires from the developer knowledge of both:
-target architecture and assembly language. Experience comes up with time, but good news is that
-AArch64 assembly is much more user friendly and intuitive than lets say x86.
+troubleshooting, analysing and optimisation. This requires from the developer knowledge of both the
+target architecture and its assembly language. Experience comes up with time, but the good news is that
+AArch64 assembly is much more user friendly and intuitive than let's say x86.
 
-To disassemble out program we will use _objdump_ utility from GNU toolchain:
+To disassemble out the program we will use _objdump_ utility from GNU toolchain:
 
 ```shell
 aarch64-none-elf-objdump --disassemble-all target/aarch64-unknown-none/debug/aarch64-bare-metal
 ```
 
-Full listing has about 4k lines, so I will not bring it all here, but just one interesting part:
+The full listing has about 4k lines, so I will not bring it all here, but just one interesting part:
 
 ```plaintext
 
@@ -386,18 +386,18 @@ Full listing has about 4k lines, so I will not bring it all here, but just one i
 
 This is the disassembled function `ptr::write_volatile`, that we used for writing bytes to UART.
 Here you can see mentioned above name mangling in action:
-`_ZN4core3ptr14write_volatile17hf16241fac42e4551E`. But also you could probably noticed, how 
-ineffective it is: instead of 1 instruction we actually need `strb w1, [x0]` we have extra 6 for
+`_ZN4core3ptr14write_volatile17hf16241fac42e4551E`. But you also probably noticed how 
+ineffective it is : instead of 1 instruction we actually need `strb w1, [x0]`, so we have 6 extra instructions for
 nothing.
 
-> To be honest, when I saw it first time I was about to stop further learning of Rust. But 
+> To be honest, when I saw it for the first time I was about to stop further learning of Rust. But 
 > fortunately I did the same disassembly for `release` build.
 
 ```shell
 aarch64-none-elf-objdump --disassemble-all target/aarch64-unknown-none/release/aarch64-bare-metal
 ```
 
-And surprisingly listing is just 66 lines long, so I will bring it almost completely:
+And surprisingly the listing is just 66 lines long, so I will bring it almost completely:
 
 ```plaintext
 1: Disassembly of section .text.boot:
@@ -418,13 +418,13 @@ And surprisingly listing is just 66 lines long, so I will bring it almost comple
 
 ```
 
-This part looks very similar to what we have in `start.s` file with couple exceptions. I have added
-line numbers manually for easier refference. On line _4_ there is a loading of 8 bytes address
-from 0x40001018. And below on line _12_, there is an address where compiler had stored the value 
-of `LD_STACK_PTR` which is `400050b0`. Similar was done for `PSCI_SYSTEM_OFF` constant, see lines
+This part looks very similar to what we have in the `start.s` file with a couple exceptions. I manually added
+line numbers for easier reference. On line _4_ there is a loading of an 8-byte address
+from 0x40001018. And below on line _12_, there is an address where the compiler had stored the value 
+of `LD_STACK_PTR`, which is `400050b0`. A similar storage was done for `PSCI_SYSTEM_OFF` constant, see lines
 _9_ and _14_.
 
-Now lets take a look on `not_main` function:
+Now let's take a look on the `not_main` function:
 
 ```plaintext
 // listing of not_main function: all done inline!
@@ -474,19 +474,19 @@ This is just amazing!
 
 ## Attaching Debugger
 
-Debugging is an essential part of low level development. When you are programming MMU, interrupts
-or drivers, sometimes it is the only way how find out what is going wrong with your code.
-For real hardware you may require external hardware debugger (and maybe even soldering skills),
-but for QEMU virtual device you need just two additional flags `-S -s` to the command we already
-used. These flags tell QEMU to pause execution, open a TCP socket on default port `1234` and
-wait GNU debugger to connect.
+Debugging is an essential part of low level development. When you are programming the MMU, interrupts
+or drivers, sometimes it is the only way to find out what is going wrong with your code.
+For real hardware you may require an external hardware debugger (and maybe even soldering skills),
+but for the QEMU virtual device you need just two additional flags `-S -s` to the command we already
+used. These flags tell QEMU to pause the execution, open a TCP socket on the default port `1234` and
+wait for the GNU debugger to connect.
 
 ```shell
 qemu-system-aarch64 -machine virt -m 1024M -cpu cortex-a53 -nographic -kernel target/aarch64-unknown-none/debug/aarch64-bare-metal -S -s
 ```
 
-Now it is turn for the `gdb-multiarch`, but before we start, lets prepare a configuration file 
-`release.gdb` in project's root for it:
+Now it is turn for the `gdb-multiarch`, but before we start, let's prepare a configuration file 
+`release.gdb` in the project root directory for it:
 
 ```plaintext
 set disassemble-next-line on
@@ -497,7 +497,7 @@ set arch aarch64
 layout regs
 ```
 
-Now run `gdb-multiarch` in other terminal window with following command:
+Now run `gdb-multiarch` in another terminal window with the following command:
 ```shell
 gdb-multiarch -x debug.gdb
 ```
@@ -506,11 +506,11 @@ gdb-multiarch -x debug.gdb
 
 ### GDB Cheatsheet
 
-GDB has own console which is a big stress for beginners. But there is a small and easy to remember 
-set of commands for a quick start:
+GDB has its own console, which is a big stress for beginners. But there is a small and easy 
+set of commands to remember for a quick start :
 
 * `break <fn|addr>` or `b <fn|addr>`: put a breakpoint, usage: `b not_main`, `b *0x40001010`
-* `break <fn> if <condition>: conditional breakpoint, usage: `break context_switch if next == init_task`
+* `break <fn> if <condition>`: conditional breakpoint, usage: `break context_switch if next == init_task`
 * `clear`: clear breakpoint, usage `clear not_main`
 * `si` or `stepi`: execute one machine instruction, step into if it is a function call
 * `ni` or `nexti`: execute one machine instruction, but over step if it is a function call
@@ -520,14 +520,14 @@ set of commands for a quick start:
 
 ## Afterwords
 
-I've been working on kernel for [LeOS](/leos/) in C for a while. After implementation of multitasking, 
-and switching between exception levels, I've started with MMU programming. When I made it works
-I realized that it is a good time to make some refactoring and rebasing of all I have done.
+I've been working on a kernel for [LeOS](/leos/) in C for a while. After implementing of multitasking, 
+and switching between exception levels, I've started with MMU programming. When I made it work
+I realized that it is a good time to make some refactoring and rebasing of everything I made.
 At the same time I decided to take a look at Rust and even consider it as main language for the
 kernel.
 
-I have spent couple days on the application from this post, understanding Rust ecosystem and other
+I have spent a couple of days on the application from this post, understanding the Rust ecosystem and other
 researches. Now when I am finishing writing I already know, that results of this will form the
-basis of [first commit](https://github.com/lowenware/leos-kernel/tree/8474474351390c483bf2a668c4c5986c4dd1c44a)
-to [LeOS Kernel](https://github.com/lowenware/leos-kernel.git) repository.
+basis of the [first commit](https://github.com/lowenware/leos-kernel/tree/8474474351390c483bf2a668c4c5986c4dd1c44a)
+to the [LeOS Kernel](https://github.com/lowenware/leos-kernel.git) repository.
 
