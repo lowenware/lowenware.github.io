@@ -1,5 +1,5 @@
 ---
-title: "LeOS - Embedded OS for ARM 64"
+title: "LeOS"
 linkTitle: "LeOS"
 date: 2020-03-19T12:31:15+01:00
 draft: false
@@ -17,35 +17,22 @@ project:
 
 ---
 
-The project of new OS is currently in active development stage. LeOS Kernel is being written from
-scratch in Rust programming language with incapsulation of AArch64 assembly. Development process,
-as well as operating system itself, is open and free.
+![Löwenware embedded Operating System](/leos/header.png)
 
-## LeOS Goals
+LeOS is the new operating system being developed for laptops, smartphones and other devices based
+on 64 bit ARM processors, designed with respect to an end-user's privacy, aiming to become a secure
+and fast environment.
 
-* To be modern free and innovative operating system for ARM 64 based computers, tablets and
-smartphones
-* Focus on embedded design: OS optimised for hardware without redundant drivers and code
-* Achieve fast OS startup: less then 10 seconds from power on to graphics shell
-* Increase battery life by optimized power consumption
-* Be open, secure and protect your privacy
-* To provide friendly and comfortable environment for programmers to build and distribute their
-software
 
-## Target Hardware
+## Embedded Design
 
-- [QEMU](https://www.qemu.org/) Virtual Device is the base platform for development stage
-- [Pine64](https://www.pine64.org/) computers are the main target platform
-- [Raspberry Pi](https://www.raspberrypi.org/) secondary target platform
-- Custom boards and devices
+Keeping things simple, each build of LeOS is dedicated to work on a specific hardware, excluding 
+redundant code and drivers from the core. It helps to reduce boot time and gain additional 
+performance solving regular tasks.
 
-## Contribution
 
-LeOS project is open! There are plenty of ways how one can become a part of it:
+## Freedom
 
-* Join OS design [brainstormings](https://gitter.im/lowenware/Lobby)
-* Send a pull request on [GitHub](https://github.com/lowenware/leos-kernel.git)
-* Extend project documentation
-* Help with porting to new hardware
-* Have own idea? [Describe it](/contact/)!
+LeOS is open source, free and independent. Flexible licensing policy allows customisations and 
+adaptation for government, corporate or personal needs.
 

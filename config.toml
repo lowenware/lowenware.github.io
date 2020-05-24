@@ -7,6 +7,8 @@ sectionPagesMenu = "main"
   tag = "tags"
   category = "categories"
 
+[blackfriday]
+  taskLists = false
 #[menu]
 #
 #  [[menu.main]]
