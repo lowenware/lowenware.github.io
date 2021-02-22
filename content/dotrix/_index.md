@@ -1,46 +1,48 @@
 ---
 title: "Dotrix"
-date: 2020-03-17T22:28:16+01:00
+date: 2021-02-14T20:34:16+01:00
 draft: false
-description: Dotrix - sketchbook for creators
-weight: -60
+description: Dotrix - Game Engine in Rust
+weight: -90
 author: "Ilja K."
+details: "Game Engine in Rust"
 sticky: false
 publication: false
 navigation: true
 comments: false
+project:
+  github: "lowenware/dotrix"
+  tag: "dotrix"
+  version: "0.2.0"
 ---
 
-Operating in IT sphere and being surrounded by a great number of electronic 
-devices, we still believe, that paper as a medium is not obsolete. It doesn’t
-matter where you go and wherever you are, if there is electricity or not, paper
-still works. You don’t need special programs or apps for writing, drawing, 
-painting, making origami or anything else, just a sheet of paper and your 
-imagination. Paper medium opens a numerous ways for your art. Choose your 
-writing material and start. Even a piece of coil is fine. Paper helped people
-to create and fix their ideas for many centuries, it helps them nowadays. So
-that is why we produced our own multitask paper notebook.
+Dotrix is a game engine written in Rust. The core is following an ECS (Entity Component System)
+programming pattern. The renderer is based on [WGPU](https://wgpu.rs), that makes possible
+crossplatform compilations for Linux, Mac and Windows, using native backends Vulkan, Metal and
+Direct X respectively.
 
-## Connecting the dots
+The engine is Open Source and available under MIT and Apache licences.
 
-It was built on our team experience. Each of us wanted to have something 
-special, in accordance with his or her operating tasks. For that reason dot
-lining became our decision. You can use it as a number of lines or cells, or 
-just ignore it. Connect the dots in your manner.
+Available features are:
 
-## How to use
+- Rendering pipelines
 
-Matrix of dots on the sheet of paper turned to the idea of name “Dotrixbook”.
-From that moment our team started the process of testing. We were coding, 
-drawing schemes and circuit schematics, mind maps, sketches and even furniture
-plans, writing texts - that is not the whole list of our activities. We believe,
-you can find even more ways of use.
+- Assets management
 
-![](/dotrix/t1.jpg){: .my-class} ![](/dotrix/p1.jpg)
+- Skeletal animation
 
-## Get your own “Dotrixbook” or support project
+- SkyBox
 
-If you are interested and already know, how you would use “Dotrixbook” in your
-daily life, feel free to order and get it. We also will appreciate any support
-of the project and contributions. Or [contact us](/contact/), if you have ideas
-of collaboration.
+- Marching cubes based terrain
+
+- UI using [EGUI](https://github.com/emilk/egui)
+
+## Editor
+
+As soon as Dotrix became functional we've started the implementation of an Editor application
+which is also open source and available on GitHub in its own repository
+[lowenware/dotrix-editor](https://github.com/lowenware/dotrix-editor).
+
+It is in under heavy development process which is targeted to achieve a major goal: full functional
+editor for marching cubes based terrain.
+

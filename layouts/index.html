@@ -1,6 +1,6 @@
 {{ define "main" }}
 <div class="content home-content">
-	{{ range first 1 (where .Site.Sections ".LinkTitle" "==" "LeOS") }}
+	{{ range first 1 (where .Site.Sections ".LinkTitle" "==" "Dotrix") }}
 	<section id="slide" class="home-slide">
 		<div class="wrapper">
 			<div class="left">
@@ -24,16 +24,16 @@
 	{{end}}
 	<div class="home-projects">
 		<section class="section-link left">
-			<a href="/aisl/" class="boxed">
-				<h1>AISL</h1>
-				<p>Back end solution</p>
+			<a href="/leos/" class="boxed">
+				<h1>LeOS</h1>
+				<p>Operating system for ARM64</p>
 			</a>
 		</section>
 
 		<section class="section-link middle">
-			<a href="/dotrix/" class="boxed">
-					<h1>Dotrix</h1>
-					<p>Sketchbook for creators</p>
+			<a href="/aisl/" class="boxed">
+					<h1>AISL</h1>
+					<p>Web Development in C</p>
 			</a>
 		</section>
 
