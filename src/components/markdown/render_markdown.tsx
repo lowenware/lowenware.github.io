@@ -1,21 +1,23 @@
 import ReactMarkdown from "react-markdown";
 import React from "react";
 import Anchor from "./anchor";
+import gfm from "remark-gfm";
+import Code from "./code";
+import Pre from "./pre";
 
 interface IProps {
   markdown?: string,
 }
-
-// TODO: add plugin https://remarkjs.github.io/react-markdown/
-
 
 const RenderMarkdown: React.FC<IProps> = ({ markdown }) => {
 
   return (
     <>
       {markdown && (
-        <ReactMarkdown components={{
+        <ReactMarkdown remarkPlugins={[gfm]} components={{
           a: Anchor,
+          code: Code,
+          pre: Pre,
         }}>
           {markdown}
         </ReactMarkdown>
