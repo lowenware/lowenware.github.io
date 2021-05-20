@@ -1,4 +1,4 @@
-import IMetadata from "./metadata";
+import IMetadata from "../interfaces/page/metadata";
 
 export function sortByDate(a?: IMetadata, b?: IMetadata) {
   const aTime = (a && a.date) ?

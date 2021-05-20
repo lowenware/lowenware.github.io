@@ -1,12 +1,21 @@
 import { getAllCategories } from "src/lib/category";
 import { getAllTags } from "src/lib/tag";
-import { sortByDate } from "src/interfaces/page/sort";
+import { sortByDate } from "src/lib/sort";
 import BlogLayout from "src/components/layouts/blog";
-import IPageProps from "src/interfaces/page/page-props";
 import MainLayout from "src/components/layouts/main";
 import React from "react";
 import RenderMarkdown from "src/components/markdown/render_markdown";
 import { getAllDynamicPages, getDynamicPageBySlug } from "src/lib/markdown";
+import IPage from "src/interfaces/page/page";
+
+interface IPageProps {
+  page: IPage,
+  props: {
+    allCategories: Record<string, number>,
+    allTags: Record<string, number>,
+    posts: IPage[],
+  }
+}
 
 const DynamicPage: React.FC<IPageProps> = ({ page, props }) => {
   const {
@@ -16,7 +25,7 @@ const DynamicPage: React.FC<IPageProps> = ({ page, props }) => {
   return (
     <MainLayout>
 
-      <BlogLayout page={page} props={props}>
+      <BlogLayout {...page} {...props}>
         <RenderMarkdown markdown={content?.markdown} />
       </BlogLayout>
 
@@ -33,19 +42,19 @@ function getRecentBlogPosts(max: number) {
 }
 
 export async function getStaticProps() {
-  const thisSlug = ["blog"];
-  const page = getDynamicPageBySlug(thisSlug, { content: true, metadata: true });
-  const recentPosts = getRecentBlogPosts(8);
+  const slug = ["blog"];
+
+  const pageProps: IPageProps = {
+    page: getDynamicPageBySlug(slug, { content: true, metadata: true }),
+    props: {
+      allCategories: getAllCategories(),
+      allTags: getAllTags(),
+      posts: getRecentBlogPosts(8),
+    }
+  };
 
   return {
-    props: {
-      page,
-      props: {
-        allCategories: getAllCategories(),
-        allTags: getAllTags(),
-        pages: recentPosts,
-      },
-    },
+    props: pageProps,
   };
 }
 

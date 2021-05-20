@@ -1,6 +1,6 @@
-import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import codeStyle from "react-syntax-highlighter/dist/cjs/styles/prism/a11y-dark";
+import React from "react";
 
 interface IProps {
   className?: string,

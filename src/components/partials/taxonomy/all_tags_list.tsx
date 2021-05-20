@@ -1,12 +1,13 @@
 import Link from "next/link";
 import React from "react";
+
 import ToUrl from "src/helpers/slug_to_url";
 
 interface IProps {
   tags: Record<string, number>,
 }
 
-const Tags: React.FC<IProps> = ({ tags }) => {
+const AllTags: React.FC<IProps> = ({ tags }) => {
   return (
     <ul>
       {Object.entries(tags).sort().map(([tag, count]) => (
@@ -21,4 +22,4 @@ const Tags: React.FC<IProps> = ({ tags }) => {
   );
 };
 
-export default Tags;
+export default AllTags;

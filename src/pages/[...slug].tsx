@@ -1,36 +1,49 @@
+import React from "react";
+
 import { filterConflicts } from "src/lib/conflicts";
 import { getAllCategories } from "src/lib/category";
 import { getAllDynamicPages, getDynamicPageBySlug } from "src/lib/markdown";
 import { getAllTags } from "src/lib/tag";
+import { sortByDate, sortByWeight } from "src/lib/sort";
 import array_starts_with from "src/helpers/array_starts_with";
 import BlogPostLayout from "src/components/layouts/blog_post";
 import ContactLayout from "src/components/layouts/contact";
-import IPageProps from "src/interfaces/page/page-props";
+import IContactMetadata from "src/interfaces/page/metadata/contact";
+import IPage from "src/interfaces/page/page";
+import IProjectRelatedPost from "src/interfaces/page/project-related-post";
+import ISection from "src/interfaces/page/section";
 import ListLayout from "src/components/layouts/list";
 import MainLayout from "src/components/layouts/main";
-import React from "react";
 import RenderMarkdown from "src/components/markdown/render_markdown";
-import { sortByDate, sortByWeight } from "src/interfaces/page/sort";
 
+interface IPageProps {
+  page: IPage,
+  props: {
+    sections?: ISection[],
+    projectRelatedPosts?: IProjectRelatedPost[],
+    allCategories?: Record<string, number>,
+    allTags?: Record<string, number>,
+    pages?: IPage[],
+  }
+}
 
 const DynamicWrapper: React.FC<IPageProps> = ({ page, props, children }) => {
 
-  function render(params: IPageProps, children: React.ReactNode) {
-    const { slug } = params.page;
+  function render() {
+    const { slug } = page;
 
-    if (slug.length > 1)
-      return <BlogPostLayout {...params}>{children}</BlogPostLayout>;
+    if (slug[0] === "contact")
+      return <ContactLayout metadata={page.metadata as IContactMetadata}>{children}</ContactLayout>;
 
-    switch (slug[0]) {
-      case "contact":
-        return <ContactLayout {...params}>{children}</ContactLayout>;
-      default:
-        return <ListLayout {...params}>{children}</ListLayout>;
+    if (slug.length > 1) {
+      return <BlogPostLayout {...page} {...props}>{children}</BlogPostLayout>;
+    } else {
+      return <ListLayout {...page} {...props}>{children}</ListLayout>;
     }
   }
 
   return (
-    render({ page, props }, children)
+    render()
   );
 };
 
@@ -63,7 +76,7 @@ export async function getStaticProps(props: IStaticProps) {
   const page = getDynamicPageBySlug(thisSlug, { content: true, metadata: true });
   const sections = getAllDynamicPages({ content: false, metadata: true })
     .filter(({ slug }) => (slug.length > thisSlug.length) && array_starts_with(slug, ...thisSlug))
-    .sort((a, b) => sortByWeight(a.metadata, b.metadata));
+    .sort((a, b) => sortByWeight(a.metadata, b.metadata)) as ISection[];
 
   let projectRelatedPosts: any = []; // TODO: remove any
   const max = 8;
@@ -75,18 +88,18 @@ export async function getStaticProps(props: IStaticProps) {
       .slice(0, max);
   }
 
-  return {
+  const pageProps: IPageProps = {
+    page,
     props: {
-      page: {
-        ...page,
-      },
-      props: {
-        sections,
-        projectRelatedPosts,
-        allCategories,
-        allTags,
-      },
-    },
+      sections,
+      projectRelatedPosts,
+      allCategories,
+      allTags,
+    }
+  };
+
+  return {
+    props: pageProps,
   };
 }
 

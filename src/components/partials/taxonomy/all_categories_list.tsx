@@ -1,12 +1,13 @@
 import Link from "next/link";
 import React from "react";
+
 import ToUrl from "src/helpers/slug_to_url";
 
 interface IProps {
   categories: Record<string, number>,
 }
 
-const Categories: React.FC<IProps> = ({ categories }) => {
+const AllCategories: React.FC<IProps> = ({ categories }) => {
   return (
     <ul>
       {Object.entries(categories).sort().map(([category, count]) => (
@@ -21,4 +22,4 @@ const Categories: React.FC<IProps> = ({ categories }) => {
   );
 };
 
-export default Categories;
+export default AllCategories;

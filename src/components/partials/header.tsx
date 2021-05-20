@@ -1,11 +1,8 @@
-import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import React from "react";
+
 import MenuSwitch from "./menu_switch";
-
-interface IProps {
-
-}
 
 const Logo: React.FC = () => (
   <svg className="icon logo">
@@ -13,7 +10,7 @@ const Logo: React.FC = () => (
   </svg>
 );
 
-const Header: React.FC<IProps> = () => {
+const Header: React.FC = () => {
   const router = useRouter();
   const isHome = router.asPath == "/";
 

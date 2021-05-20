@@ -1,11 +1,20 @@
 import { getAllCategories } from "src/lib/category";
 import { getAllPagesWithTag, getAllTags } from "src/lib/tag";
-import { sortByDate } from "src/interfaces/page/sort";
+import { sortByDate } from "src/lib/sort";
 import BlogLayout from "src/components/layouts/blog";
-import IPageProps from "src/interfaces/page/page-props";
 import MainLayout from "src/components/layouts/main";
 import React from "react";
 import RenderMarkdown from "src/components/markdown/render_markdown";
+import IPage from "src/interfaces/page/page";
+
+interface IPageProps {
+  page: IPage,
+  props: {
+    allCategories: Record<string, number>,
+    allTags: Record<string, number>,
+    posts: IPage[],
+  }
+}
 
 const DynamicPage: React.FC<IPageProps> = ({ page, props }) => {
   const {
@@ -15,7 +24,7 @@ const DynamicPage: React.FC<IPageProps> = ({ page, props }) => {
   return (
     <MainLayout>
 
-      <BlogLayout page={page} props={props}>
+      <BlogLayout {...page} {...props}>
         <RenderMarkdown markdown={content?.markdown} />
       </BlogLayout>
 
@@ -31,26 +40,25 @@ interface IStaticProps {
 
 export async function getStaticProps(props: IStaticProps) {
   const tag = props.params.id;
-  const thisSlug = ["tags", tag];
+  const slug = ["tags", tag];
 
-  const pages = getAllPagesWithTag(tag, { content: "truncated", metadata: true })
-    .sort((a, b) => sortByDate(a.metadata, b.metadata));
-
-  return {
-    props: {
-      page: {
-        slug: thisSlug,
-        metadata: {
-          title: tag,
-        },
-        content: "",
-      },
-      props: {
-        allCategories: getAllCategories(),
-        allTags: getAllTags(),
-        pages,
+  const pageProps: IPageProps = {
+    page: {
+      slug,
+      metadata: {
+        title: tag,
       },
     },
+    props: {
+      allCategories: getAllCategories(),
+      allTags: getAllTags(),
+      posts: getAllPagesWithTag(tag, { content: "truncated", metadata: true })
+        .sort((a, b) => sortByDate(a.metadata, b.metadata)),
+    }
+  };
+
+  return {
+    props: pageProps,
   };
 }
 
@@ -59,7 +67,7 @@ export async function getStaticPaths() {
 
   const paths = allTags.map(tag => ({
     params: {
-      id: tag,
+      id: tag.toLowerCase(),
     },
   }));
 

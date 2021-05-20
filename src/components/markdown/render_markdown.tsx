@@ -1,9 +1,10 @@
-import ReactMarkdown from "react-markdown";
-import React from "react";
-import Anchor from "./anchor";
 import gfm from "remark-gfm";
-import Code from "./code";
 import Pre from "./pre";
+import React from "react";
+import ReactMarkdown from "react-markdown";
+
+import Anchor from "./anchor";
+import Code from "./code";
 
 interface IProps {
   markdown?: string,
@@ -15,7 +16,7 @@ const RenderMarkdown: React.FC<IProps> = ({ markdown }) => {
     <>
       {markdown && (
         <ReactMarkdown remarkPlugins={[gfm]} components={{
-          a: Anchor,
+          a: Anchor as React.FC,
           code: Code,
           pre: Pre,
         }}>

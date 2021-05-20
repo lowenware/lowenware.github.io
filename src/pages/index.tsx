@@ -7,7 +7,7 @@ import MainLayout from "src/components/layouts/main";
 import React from "react";
 import Tags from "src/components/partials/taxonomy/tags";
 import ToUrl from "src/helpers/slug_to_url";
-import { sortByDate, sortByWeight } from "src/interfaces/page/sort";
+import { sortByDate, sortByWeight } from "src/lib/sort";
 
 interface IPageWithContent {
   slug: string[],

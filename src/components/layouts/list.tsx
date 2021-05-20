@@ -1,21 +1,22 @@
+import React from "react";
+
 import Categories from "../partials/taxonomy/categories";
 import FormattedDate from "../partials/date";
 import IMetadata from "src/interfaces/page/metadata";
-import IPageProps from "src/interfaces/page/page-props";
+import IPage from "src/interfaces/page/page";
 import IProjectRelatedPost from "src/interfaces/page/project-related-post";
-import path from "path";
-import React from "react";
+import ISection from "src/interfaces/page/section";
 import ToUrl from "src/helpers/slug_to_url";
 
 interface IProjectProps {
-  metadata: IMetadata,
+  metadata?: IMetadata,
   relatedPosts?: IProjectRelatedPost[],
 }
 
 const Project: React.FC<IProjectProps> = ({ metadata, relatedPosts }) => {
   return (
     <>
-      {metadata.project && (
+      {metadata?.project && (
         <aside className="aside">
           {metadata.project.version && (
             <>
@@ -66,20 +67,16 @@ const Project: React.FC<IProjectProps> = ({ metadata, relatedPosts }) => {
   );
 };
 
-const ListLayout: React.FC<IPageProps> = ({ page, props, children }) => {
-  const {
-    metadata
-  } = page;
+interface IProps extends IPage {
+  projectRelatedPosts?: IProjectRelatedPost[],
+  sections?: ISection[],
+}
 
+const ListLayout: React.FC<IProps> = ({ projectRelatedPosts, sections, metadata, children }) => {
   const {
     title,
     className,
-  } = metadata;
-
-  const {
-    projectRelatedPosts,
-    sections,
-  } = props;
+  } = metadata || {};
 
   return (
     <div className={"list-content " + (className ? className : "")}>

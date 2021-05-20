@@ -1,8 +1,12 @@
-import IContactMetadata from "src/interfaces/page/metadata/contact";
-import IPageProps from "src/interfaces/page/page-props";
 import React from "react";
 
-const ContactLayout: React.FC<IPageProps> = ({ page, children }) => {
+import IContactMetadata from "src/interfaces/page/metadata/contact";
+
+interface IProps {
+  metadata: IContactMetadata,
+}
+
+const ContactLayout: React.FC<IProps> = ({ metadata, children }) => {
   const {
     title,
     _map,
@@ -10,7 +14,7 @@ const ContactLayout: React.FC<IPageProps> = ({ page, children }) => {
     _company,
     _address,
     _phone,
-  } = page.metadata as IContactMetadata;
+  } = metadata;
 
   return (
     <div className="contact-content">

@@ -1,58 +1,55 @@
-import React from "react";
-import IMetadata from "src/interfaces/page/metadata";
-import path from "path";
-import AllCategories from "src/components/blog/taxonomy/categories";
-import AllTags from "src/components/blog/taxonomy/tags";
-import IPageProps from "src/interfaces/page/page-props";
-import RenderMarkdown from "../markdown/render_markdown";
 import Link from "next/link";
-import Tags from "../partials/taxonomy/tags";
-import Categories from "../partials/taxonomy/categories";
+import React from "react";
+
+import AllCategories from "src/components/partials/taxonomy/all_categories_list";
+import AllTags from "src/components/partials/taxonomy/all_tags_list";
+import CategoriesList from "../partials/taxonomy/categories";
 import FormattedDate from "../partials/date";
+import IPage from "src/interfaces/page/page";
+import RenderMarkdown from "../markdown/render_markdown";
+import Tags from "../partials/taxonomy/tags";
 import ToUrl from "src/helpers/slug_to_url";
 
-const BlogLayout: React.FC<IPageProps> = ({ page, props, children }) => {
-  const {
-    title,
-  } = page.metadata;
-  const {
-    allCategories,
-    allTags,
-    pages,
-  } = props;
+interface IProps extends IPage {
+  allCategories: Record<string, number>,
+  allTags: Record<string, number>,
+  /** Recent posts, posts in category or posts with tag */
+  posts: IPage[],
+}
 
+const BlogLayout: React.FC<IProps> = ({ metadata, children, allCategories, allTags, posts: posts }) => {
   return (
     <div className="text-content blog-content">
       <aside className="aside">
-        <h1>{title}</h1>
+        <h1>{metadata?.title}</h1>
 
         {children}
 
         <div className="taxonomies">
           <div className="title">Categories</div>
-          <AllCategories categories={allCategories!} />
+          <AllCategories categories={allCategories} />
 
           <div className="title">Tags</div>
-          <AllTags tags={allTags!} />
+          <AllTags tags={allTags} />
         </div>
       </aside>
 
       <div className="content">
-        {pages && (
-          pages.map(({ slug, metadata, content }, i) => (
+        {posts && (
+          posts.map(({ slug, metadata, content }, i) => (
             <article key={i} className="article">
               <div className="taxonomy">
                 <span className="timestamp">
-                  <FormattedDate date={metadata.date} />
+                  <FormattedDate date={metadata?.date} />
                 </span>
                 {" – "}
-                <Categories categories={metadata.categories} />
+                <CategoriesList categories={metadata?.categories} />
                 {" / "}
-                <Tags tags={metadata.tags} />
+                <Tags tags={metadata?.tags} />
               </div>
               <h1>
                 <Link href={ToUrl(...slug)}>
-                  <a>{metadata.title}</a>
+                  <a>{metadata?.title}</a>
                 </Link>
               </h1>
               {content && (

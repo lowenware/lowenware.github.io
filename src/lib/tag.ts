@@ -20,6 +20,17 @@ export function getAllTags() {
 export function getAllPagesWithTag(tag: string, request: IPageRequest) {
   return getAllDynamicPages(request)
     .filter(({ metadata }) => {
-      return metadata && metadata["tags"] && metadata["tags"].includes(tag);
+      return metadata && metadata.tags && includesCaseInsensitive(metadata.tags, tag);
     });
+}
+
+function includesCaseInsensitive(array: string[], str: string) {
+  const lookingFor = str.toLowerCase();
+
+  for (const value of array) {
+    if (value.toLowerCase() === lookingFor)
+      return true;
+  }
+
+  return false;
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+
 import social from "src/content/social";
 
 const Newstler: React.FC = () => {

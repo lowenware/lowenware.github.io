@@ -1,7 +1,15 @@
 import React from "react";
 
 const Pre: React.FC = ({ children}) => {
-  const childTag: string = children[0].props.node.tagName || "";
+  const childTag: string = getChildTag();
+
+  function getChildTag(): string {
+    try {
+      return (children as any)[0].props.node.tagName || "";
+    } catch {
+      return "";
+    }
+  }
 
   return (
     <>

@@ -1,16 +1,13 @@
+import React from "react";
+
 import Breadcrumbs from "../partials/breadcrumbs";
 import Categories from "../partials/taxonomy/categories";
 import Comments from "../partials/comments";
 import FormattedDate from "../partials/date";
-import IPageProps from "src/interfaces/page/page-props";
-import React from "react";
+import IPage from "src/interfaces/page/page";
 import Tags from "src/components/partials/taxonomy/tags";
 
-
-const BlogPostLayout: React.FC<IPageProps> = ({ page, children }) => {
-  const {
-    slug,
-  } = page;
+const BlogPostLayout: React.FC<IPage> = ({ slug, metadata, children }) => {
 
   const {
     author,
@@ -20,7 +17,7 @@ const BlogPostLayout: React.FC<IPageProps> = ({ page, children }) => {
     publication,
     tags,
     title,
-  } = page.metadata;
+  } = metadata || {};
 
   return (
     <main className="content article text-content blog-post">
