@@ -10,6 +10,7 @@ import ListLayout from "src/components/layouts/list";
 import MainLayout from "src/components/layouts/main";
 import React from "react";
 import RenderMarkdown from "src/components/markdown/render_markdown";
+import { sortByDate, sortByWeight } from "src/interfaces/page/sort";
 
 
 const DynamicWrapper: React.FC<IPageProps> = ({ page, props, children }) => {
@@ -62,11 +63,7 @@ export async function getStaticProps(props: IStaticProps) {
   const page = getDynamicPageBySlug(thisSlug, { content: true, metadata: true });
   const sections = getAllDynamicPages({ content: false, metadata: true })
     .filter(({ slug }) => (slug.length > thisSlug.length) && array_starts_with(slug, ...thisSlug))
-    .sort((a, b) => a.metadata["weight"] - b.metadata["weight"])
-    .map(post => ({
-      slug: post.slug,
-      metadata: post.metadata,
-    })); // TODO: how to omit content?
+    .sort((a, b) => sortByWeight(a.metadata, b.metadata));
 
   let projectRelatedPosts: any = []; // TODO: remove any
   const max = 8;
@@ -74,12 +71,8 @@ export async function getStaticProps(props: IStaticProps) {
   if (projectTag) {
     projectRelatedPosts = getAllDynamicPages({ content: false, metadata: true })
       .filter(({ metadata }) => metadata?.tags && metadata.tags.includes(projectTag))
-      .sort((a, b) => new Date(b.metadata["date"]) - new Date(a.metadata["date"]))
-      .slice(0, max)
-      .map(post => ({
-        slug: post.slug,
-        metadata: post.metadata,
-      })); // TODO: how to omit content?
+      .sort((a, b) => sortByDate(a.metadata, b.metadata))
+      .slice(0, max);
   }
 
   return {

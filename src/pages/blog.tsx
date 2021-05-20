@@ -24,17 +24,18 @@ const DynamicPage: React.FC<IPageProps> = ({ page, props }) => {
   );
 };
 
-function getRecentBlogPosts() { // TODO: maximum number of recent posts:
+function getRecentBlogPosts(max: number) {
   const recentPosts = getAllDynamicPages({ content: "truncated", metadata: true })
     .filter(({slug}) => slug[0] == "blog" && slug.length > 1)
-    .sort((a, b) => sortByDate(a.metadata, b.metadata));
+    .sort((a, b) => sortByDate(a.metadata, b.metadata))
+    .slice(0, max);
   return recentPosts;
 }
 
 export async function getStaticProps() {
   const thisSlug = ["blog"];
   const page = getDynamicPageBySlug(thisSlug, { content: true, metadata: true });
-  const recentPosts = getRecentBlogPosts();
+  const recentPosts = getRecentBlogPosts(8);
 
   return {
     props: {

@@ -6,7 +6,6 @@ interface IProps {
   className?: string,
 }
 
-// TODO: parameters
 const Code: React.FC<IProps> = ({ className, children }) => {
   const match = /language-(\w+)/.exec(className || "");
 

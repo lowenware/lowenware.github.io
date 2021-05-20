@@ -11,6 +11,8 @@ interface IMetadata {
   tags?: string[],
   className?: string,
   linkTitle?: string,
+  sticky?: boolean,
+  weight?: number,
   project?: {
     github?: string,
     tag?: string,

@@ -4,10 +4,10 @@ import Categories from "src/components/partials/taxonomy/categories";
 import FormattedDate from "src/components/partials/date";
 import IMetadata from "src/interfaces/page/metadata";
 import MainLayout from "src/components/layouts/main";
-import path from "path";
 import React from "react";
 import Tags from "src/components/partials/taxonomy/tags";
 import ToUrl from "src/helpers/slug_to_url";
+import { sortByDate, sortByWeight } from "src/interfaces/page/sort";
 
 interface IPageWithContent {
   slug: string[],
@@ -146,13 +146,9 @@ const HomePage: React.FC<IPageParams> = ({ page, recentPosts, slide }) => {
 
 function getRecentPosts(max: number) {
   return getAllDynamicPages({ content: false, metadata: true })
-    .filter(({ metadata }) => metadata && metadata["date"] && metadata["publication"])
-    .sort((a, b) => new Date(b.metadata["date"]) - new Date(a.metadata["date"]))
-    .slice(0, max)
-    .map(post => ({
-      slug: post.slug,
-      metadata: post.metadata,
-    })); // TODO: how to omit content?
+    .filter(({ metadata }) => metadata && metadata.date && metadata.publication)
+    .sort((a, b) => sortByDate(a.metadata, b.metadata))
+    .slice(0, max);
 }
 
 export async function getStaticProps() {
@@ -162,15 +158,11 @@ export async function getStaticProps() {
 
   const slideTargetSlug = ["dotrix"];
   const slide = {
-    primary: getDynamicPageBySlug(slideTargetSlug, { content: true, metadata: true }), // TODO: how to omit content?
+    primary: getDynamicPageBySlug(slideTargetSlug, { content: true, metadata: true }),
     secondary: getAllDynamicPages({ content: false, metadata: true })
       .filter(({ slug }) => array_starts_with(slug, ...slideTargetSlug))
-      .filter(({ metadata }) => metadata && metadata["sticky"])
-      .sort(({ metadata }) => -metadata["weight"])
-      .map(post => ({
-        slug: post.slug,
-        metadata: post.metadata,
-      })) // TODO: how to omit content?
+      .filter(({ metadata }) => metadata && metadata.sticky)
+      .sort((a, b) => sortByWeight(a.metadata, b.metadata))
   };
 
   return {

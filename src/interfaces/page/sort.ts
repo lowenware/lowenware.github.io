@@ -11,3 +11,10 @@ export function sortByDate(a?: IMetadata, b?: IMetadata) {
 
   return bTime - aTime;
 }
+
+export function sortByWeight(a?: IMetadata, b?: IMetadata) {
+  const aWeight = a?.weight || 0;
+  const bWeight = b?.weight || 0;
+
+  return aWeight - bWeight;
+}
