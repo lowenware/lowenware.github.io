@@ -1,8 +1,8 @@
-import { getAllDynamicPages, IPageRequest } from "./markdown";
+import { getAllPages, IPageRequest } from "./markdown";
 
 export function getAllTags() {
   const tags: Record<string, number> = {};
-  const pages = getAllDynamicPages({ content: false, metadata: true });
+  const pages = getAllPages({ content: false, metadata: true });
   pages.map(({ metadata }) => {
     if (metadata && metadata["tags"]) {
       const pageCategories: string[] = metadata["tags"];
@@ -18,7 +18,7 @@ export function getAllTags() {
 }
 
 export function getAllPagesWithTag(tag: string, request: IPageRequest) {
-  return getAllDynamicPages(request)
+  return getAllPages(request)
     .filter(({ metadata }) => {
       return metadata && metadata.tags && includesCaseInsensitive(metadata.tags, tag);
     });

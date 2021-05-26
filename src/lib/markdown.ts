@@ -6,14 +6,12 @@ import IPage from "src/interfaces/page/page";
 import matter from "gray-matter";
 
 /**
- * _pages and _pages/dynamic directory where the markdown content will live
- * _pages will have the home.md (aka index or /)
- * _pages/dynamic will be home to all other pages (aka [slug].js)
+ * Directory where the markdown content is located.
  */
-const pagesDirectory = join(process.cwd(), "_pages");
+const pagesDirectory = join(process.cwd(), "_content");
 
 /**
- * Gets all the files (slugs) in a directory
+ * Gets all the file paths (slugs) in a directory and subdirectories.
  */
 export function getSlugsFromDirectory(dir: string) {
   return traverseDir(dir);
@@ -37,12 +35,9 @@ function traverseDir(dir: string, relative: string[] = [], files: string[][] = [
 }
 
 /**
- * Gets the contents of a file
- * The gray-matter (metadata at the top of the file) will be
- * added to the item object, the content will be in
- * item.content and the file name (slug) will be in item.slug.
+ * Gets the contents of a file.
  */
-export function getBySlug(dir: string, slug: string[], request: IPageRequest) {
+function getBySlug(dir: string, slug: string[], request: IPageRequest) {
   let fullPath = join(dir, ...slug) + ".md";
 
   if (!fs.existsSync(fullPath))
@@ -86,17 +81,17 @@ export interface IPageRequest {
 }
 
 /**
- * Returns contents of a page in the _pages/dynamic directory
+ * Returns contents of a page in the pages directory.
  */
-export function getDynamicPageBySlug(slug: string[], request: IPageRequest) {
+export function getPageBySlug(slug: string[], request: IPageRequest) {
   return getBySlug(pagesDirectory, slug, request);
 }
 
 /**
- * Returns a list of all the pages in the _pages/dynamic directory
+ * Returns a list of all dynamic pages.
  */
-export function getAllDynamicPages(request: IPageRequest) {
+export function getAllPages(request: IPageRequest) {
   const slugs = getSlugsFromDirectory(pagesDirectory);
-  const pages = slugs.map((slug) => getDynamicPageBySlug(slug, request));
+  const pages = slugs.map((slug) => getPageBySlug(slug, request));
   return pages;
 }

@@ -5,7 +5,6 @@ interface IProps {
   href: string,
 }
 
-// TODO: parameters
 const Anchor: React.FC<IProps> = ({ children, href}) => {
 
   return (

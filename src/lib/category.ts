@@ -1,8 +1,8 @@
-import { getAllDynamicPages, IPageRequest } from "./markdown";
+import { getAllPages, IPageRequest } from "./markdown";
 
 export function getAllCategories() {
   const categories: Record<string, number> = {};
-  const pages = getAllDynamicPages({ content: false, metadata: true });
+  const pages = getAllPages({ content: false, metadata: true });
   pages.map(({ metadata }) => {
     if (metadata && metadata["categories"]) {
       const pageCategories: string[] = metadata["categories"];
@@ -18,7 +18,7 @@ export function getAllCategories() {
 }
 
 export function getAllPagesInCategory(category: string, request: IPageRequest) {
-  return getAllDynamicPages(request)
+  return getAllPages(request)
     .filter(({ metadata }) => {
       return metadata && metadata["categories"] && metadata["categories"].includes(category);
     });

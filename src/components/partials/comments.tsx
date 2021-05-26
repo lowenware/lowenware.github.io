@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 
-
 const Comments: React.FC = () => {
   const ref = React.useRef<HTMLElement>(null);
 

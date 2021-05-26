@@ -2,12 +2,13 @@ import React from "react";
 
 import { filterConflicts } from "src/lib/conflicts";
 import { getAllCategories } from "src/lib/category";
-import { getAllDynamicPages, getDynamicPageBySlug } from "src/lib/markdown";
+import { getAllPages, getPageBySlug } from "src/lib/markdown";
 import { getAllTags } from "src/lib/tag";
 import { sortByDate, sortByWeight } from "src/lib/sort";
 import array_starts_with from "src/helpers/array_starts_with";
 import BlogPostLayout from "src/components/layouts/blog_post";
 import ContactLayout from "src/components/layouts/contact";
+import Head from "src/components/partials/head";
 import IContactMetadata from "src/interfaces/page/metadata/contact";
 import IPage from "src/interfaces/page/page";
 import IProjectRelatedPost from "src/interfaces/page/project-related-post";
@@ -54,11 +55,14 @@ const DynamicPage: React.FC<IPageProps> = ({ page, props }) => {
   } = page;
 
   return (
-    <MainLayout>
-      <DynamicWrapper page={page} props={props}>
-        <RenderMarkdown markdown={content?.markdown} />
-      </DynamicWrapper>
-    </MainLayout>
+    <>
+      <Head {...page} />
+      <MainLayout>
+        <DynamicWrapper page={page} props={props}>
+          <RenderMarkdown markdown={content?.markdown} />
+        </DynamicWrapper>
+      </MainLayout>
+    </>
   );
 };
 
@@ -73,8 +77,8 @@ export async function getStaticProps(props: IStaticProps) {
   const allCategories = getAllCategories();
   const allTags = getAllTags();
 
-  const page = getDynamicPageBySlug(thisSlug, { content: true, metadata: true });
-  const sections = getAllDynamicPages({ content: false, metadata: true })
+  const page = getPageBySlug(thisSlug, { content: true, metadata: true });
+  const sections = getAllPages({ content: false, metadata: true })
     .filter(({ slug }) => (slug.length > thisSlug.length) && array_starts_with(slug, ...thisSlug))
     .sort((a, b) => sortByWeight(a.metadata, b.metadata)) as ISection[];
 
@@ -82,7 +86,7 @@ export async function getStaticProps(props: IStaticProps) {
   const max = 8;
   const projectTag = page.metadata?.project?.tag;
   if (projectTag) {
-    projectRelatedPosts = getAllDynamicPages({ content: false, metadata: true })
+    projectRelatedPosts = getAllPages({ content: false, metadata: true })
       .filter(({ metadata }) => metadata?.tags && metadata.tags.includes(projectTag))
       .sort((a, b) => sortByDate(a.metadata, b.metadata))
       .slice(0, max);
@@ -104,7 +108,7 @@ export async function getStaticProps(props: IStaticProps) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllDynamicPages({ content: false, metadata: false })
+  const posts = getAllPages({ content: false, metadata: false })
     .filter(({ slug }) => filterConflicts([], slug));
 
   const paths = posts.map(({ slug }) => ({
@@ -113,11 +117,13 @@ export async function getStaticPaths() {
     },
   }));
 
+  /*
   console.log("/[...slug] paths ----------");
   paths.forEach(p => {
     console.log(p);
   });
   console.log("---------------------------");
+  */
 
   return {
     paths,

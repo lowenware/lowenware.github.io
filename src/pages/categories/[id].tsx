@@ -6,6 +6,7 @@ import MainLayout from "src/components/layouts/main";
 import React from "react";
 import RenderMarkdown from "src/components/markdown/render_markdown";
 import IPage from "src/interfaces/page/page";
+import Head from "src/components/partials/head";
 
 interface IPageProps {
   page: IPage,
@@ -22,13 +23,16 @@ const DynamicPage: React.FC<IPageProps> = ({ page, props }) => {
   } = page;
 
   return (
-    <MainLayout>
+    <>
+      <Head {...page} />
+      <MainLayout>
 
-      <BlogLayout {...page} {...props}>
-        <RenderMarkdown markdown={content?.markdown} />
-      </BlogLayout>
+        <BlogLayout {...page} {...props}>
+          <RenderMarkdown markdown={content?.markdown} />
+        </BlogLayout>
 
-    </MainLayout>
+      </MainLayout>
+    </>
   );
 };
 

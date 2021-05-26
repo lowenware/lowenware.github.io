@@ -4,15 +4,16 @@ interface IMetadata {
   description?: string,
 
   author?: string,
-  details?: string,
-  publication?: boolean,
-  comments?: boolean,
   categories?: string[],
-  tags?: string[],
   className?: string,
+  comments?: boolean,
+  details?: string,
   linkTitle?: string,
+  publication?: boolean,
   sticky?: boolean,
+  tags?: string[],
   weight?: number,
+
   project?: {
     github?: string,
     tag?: string,
