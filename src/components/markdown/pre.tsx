@@ -1,11 +1,11 @@
 import React from "react";
 
-const Pre: React.FC = ({ children}) => {
-  const childTag: string = getChildTag();
+const Pre: React.FC = (props) => {
+  const childType: string = getChildType();
 
-  function getChildTag(): string {
+  function getChildType(): string {
     try {
-      return (children as any)[0].props.node.tagName || "";
+      return (props.children as any)[0].type || "";
     } catch {
       return "";
     }
@@ -13,13 +13,15 @@ const Pre: React.FC = ({ children}) => {
 
   return (
     <>
-      {childTag == "code" ? (
+      {childType == "code" ? (
         <div className="highlight">
-          {children}
+          <pre>
+            {props.children}
+          </pre>
         </div>
       ) : (
         <pre>
-          {children}
+          {props.children}
         </pre>
       )}
     </>
