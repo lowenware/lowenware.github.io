@@ -1,4 +1,19 @@
-public/
-resources/_gen/
-old.css
 todo.txt
+
+# dependencies
+/node_modules
+package-lock.json
+
+# next.js
+/.next/
+
+# production
+/out/
+
+# misc
+.DS_Store
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

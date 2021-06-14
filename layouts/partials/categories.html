@@ -1,5 +1,0 @@
-{{ with .Params.categories }}
-{{ range first 1 . }}
-<a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="dark category-link">@{{- . -}}</a>
-{{ end }}
-{{ end }}
