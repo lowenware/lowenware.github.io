@@ -8,14 +8,14 @@ sticky: false
 publication: false
 navigation: true
 comments: false
-_map: "https://maps.google.com/maps?q=Tovaryšský vrch 1358/3&t=&z=17&ie=UTF8&iwloc=&output=embed&center=50.7706885,15.0536987"
+_map: "https://maps.google.com/maps?q=U Jezu 525/4&t=&z=17&ie=UTF8&iwloc=&output=embed"
 _subtitle: "Our Studio"
 _company:
   name: "Löwenware s.r.o."
   orgID: "06203051"
   iban: "CZ2101000001154725290277"
 _address:
-  street: "Tovaryšský vrch 1358/3"
+  street: "U Jezu 525/4"
   locality: "Liberec"
   country: "Czech Republic"
   postalCode: "46001"
