@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+@tailwind base;
+
+@layer base {
+  h1 {
+    @apply text-white font-normal text-h1;
+  }
+  h2{
+    @apply text-white font-normal text-h2;
+  }
+  h3{
+    @apply text-white font-normal text-h3;
+  }
+  p {
+    @apply text-blue-light text-medium;
+  }
+}
+
+.slide--large h1 {
+  @apply text-h3;
+}
+
+.card h1 {
+  @apply text-h3;
+}
+
+main h1 {
+  @apply mt-32 mb-16;
+}
+
+main h2 {
+  @apply mt-32 mb-16;
+}
+
+main p {
+  @apply pt-8 pb-4;
+}
+
+article h1 {
+  @apply text-h3;
+}
+
+button {
+  @apply: cursor-pointer;
+}
+
+@tailwind components;
+
+@layer components {
+  html,
+  body {
+    @apply h-full p-0 m-0 font-jura;
+  }
+
+  #__next {
+    @apply relative h-full;
+  }
+}
+@tailwind utilities;
