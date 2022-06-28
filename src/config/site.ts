@@ -1,5 +1,5 @@
 export const site = {
-  name: "Dotrix",
+  name: "Löwenware",
   content: {
     extension: process.env.CONTENT_EXTENSION || ".md",
     root: process.env.CONTENT_ROOT || "content",
@@ -14,5 +14,8 @@ export const site = {
   },
   community: {
     slug: process.env.COMMUNITY_SLUG || "community",
+  },
+   services: {
+    slug: process.env.SERVICES_SLUG || "services",
   },
 };

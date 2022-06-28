@@ -21,6 +21,15 @@ export interface SocialMeta {
   order: number,
   content: string,
 }
+export interface ServicesMeta {
+  slug: string,
+  title: string,
+  label: string,
+  url: string,
+  action: string,
+  order: number,
+  content: string,
+}
 
 export interface StaticPage {
   meta: StaticPageMeta,

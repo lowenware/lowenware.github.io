@@ -158,7 +158,6 @@ export class Blog {
 
   getBlogPostStaticProps(slug: string): BlogPostStaticProps {
     const {meta, content} = this.readBlogPost(`${slug}.md`);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const index = this.posts.findIndex(p => p.slug === slug)!;
 
     let prev = null,
