@@ -66,3 +66,43 @@ button {
   }
 }
 @tailwind utilities;
+.menu-switch .icon {
+  display: block;
+  width: 24px;
+  height: 24px;
+  fill: #192734;
+}
+.menu-switch .path {
+	transform: rotate(0) translateY(0) translateX(0);
+		transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+		transform-origin: center center;
+
+}
+.menu-switch .path .lines{
+  opacity: 1;
+}
+.menu-switch .path .cross{
+  opacity: 0;
+}
+.menu-switch.opened .path .lines{
+  transform: rotate(180deg) translateY(0) translateX(0);
+				opacity: 0;
+}
+.menu-switch.opened .path .cross{
+  transform: rotate(180deg) translateY(0) translateX(0);
+				opacity: 1;
+}
+
+@media screen and (min-width: 980px) {
+  .menu-switch{
+  display: none;}
+}
+.opened-list{
+  width: 100%;
+}
+.opened-nav{
+  width: 100%;
+  margin-top: 0;
+  top: 144px;
+  transform: translateX(0);
+}

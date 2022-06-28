@@ -2,6 +2,7 @@ import classNames from "classnames"
 import Link from "next/link"
 import { Logo } from "~/assets"
 import { StaticPageMeta } from "~/modules/content-manager"
+import MenuSwitch from "./menu_switch"
 
 interface MenuProps{
     currentPage:string
@@ -9,8 +10,8 @@ interface MenuProps{
 }
 export const Menu:React.FC<MenuProps>=({currentPage,links})=>{
 
-    return <nav id="menu" className="absolute w-144 top-2/4 left-0 -mt-40">
-    <ul className="px-32 text-medium font-light">
+    return <nav id="menu" className="absolute w-full lg:w-144 top-144 lg:top-2/4 left-0 mt-0 lg:-mt-40 duration-700 transition ease-in -translate-x-full lg:-translate-x-0">
+    <ul id="menu-list" className="px-32 text-medium font-light flex flex-col gap-32 lg:gap-0">
        {links&&(links.map(link=>{
         return <li key={link.slug} className="relative">
             <Link href={link.url}>

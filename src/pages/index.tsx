@@ -7,7 +7,7 @@ interface Home {
     meta: StaticPageMeta,
     posts: BlogPostRaw[],
   }
-const Home: NextPage<PageProps<Home>> = ({menu}) => {return <PageLayout currentPage="home" links={menu} ><></></PageLayout>}
+const Home: NextPage<PageProps<Home>> = ({menu, social, data}) => {return <PageLayout currentPage="home" links={menu} social={social} ><></></PageLayout>}
 
 export const getStaticProps = async () => {
     const manager = new ContentManager();
