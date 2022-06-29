@@ -5,10 +5,12 @@ interface FooterProps{
     social:SocialMeta[]
 }
 export const Footer:React.FC<FooterProps>=({social})=>{
-    return <div className="w-full mt-auto">
+  console.log(social);
+    return <div className="w-full absolute bottom-0">
         <span className="absolute -rotate-90 p-64 bottom-72 -left-72 w-288 h-144 bg-dark-super text-white text-h3 leading-3 hidden lg:block">Löwenware</span>
        
-            <ul className="flex justify-center lg:justify-end space-x-16 h-144 items-center px-16">
+            <ul className="flex justify-center lg:justify-end space-x-16 h-144 lg:h-144 items-center px-16">
+              
         {social.map(link => (
           <Link key={link.slug} href={link.url}>
             <div className="cursor-pointer">

@@ -21,7 +21,7 @@ import {ReactNode} from "react";
 
 export const Logo = {
   GitHub: () => <img src={LogoGithub} alt="GitHub" />,
-  Lowenware: () => <img src={LowenwareLogo} alt="Löwenware" />,
+  Lowenware: () => <img src={LowenwareLogo} className="hover:fill-blue" alt="Löwenware" />,
   Twitter: () => <img src={LogoTwitter} alt="Twitter" />,
   YouTube: () => <img src={LogoYoutube} alt="YouTube" />,
   LinkeId: () => <img src={LogoLinkeId} alt="YouTube" />,

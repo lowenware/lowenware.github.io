@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const sizes = {
+  0:"0",
   1:"1px",
   2:"2px",
   4: "4px",
@@ -11,9 +12,11 @@ const sizes = {
   64: "64px",
   72:"72px",
   80: "80px",
+  128:"128px",
+  256:"256px",
   144:"144px",
   288:"288px",
-  "slide": "30vh",
+  640:"640px",
 };
 module.exports = {
   content: ["./src/pages/**/*.{ts,tsx}", "./src/components/**/*.{ts,tsx}"],

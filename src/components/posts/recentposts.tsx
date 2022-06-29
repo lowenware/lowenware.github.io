@@ -6,7 +6,7 @@ export const RecentPosts: React.FC = () => {
   return (
     <section className="w-full flex flex-col my-32 items-center space-y-16">
       <p className='text-h3 text-grey-500'>Recent Posts</p>
-      <ul className='space-y-16 flex flex-col w-1/3'>
+      <ul className='space-y-16 flex flex-col '>
       <li>
           <div>
             <a className='text-blue hover:text-dark duration-500' href="">Link to Post</a>

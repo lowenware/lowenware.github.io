@@ -12,8 +12,8 @@ interface PageLayoutProps{
 }
 
 export const PageLayout: React.FC<PageLayoutProps> = ({currentPage,children,links,social,className}) => {
-    return<div className={classNames("w-full relative",className)}>
-        <section className="px-0 lg:px-144 ">
+    return<div className={classNames("w-full min-h-min relative flex flex-col",className)}>
+        <section className="px-0 lg:px-144 pb-288">
         <Header/>
     <Menu currentPage={currentPage} links={links} />
     {children} 

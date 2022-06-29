@@ -1,4 +1,5 @@
 export * from "./layouts"
+export * from "./blog"
 export * from "./posts"
 export * from "./button"
 export * from "./footer"

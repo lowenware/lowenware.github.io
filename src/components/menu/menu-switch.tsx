@@ -14,7 +14,7 @@ export const MenuSwitch: React.FC = () => { // TODO: fix issues
   };
 
   return (
-    <a href="#" id="menu-switch" className="menu-switch flex items-center justify-center absolute right-48 top-64" title="Switch menu" onClick={click}>
+    <a href="#" id="menu-switch" className="menu-switch flex items-center justify-center my-16 mx-32" title="Switch menu" onClick={click}>
     <svg className="icon path w-32 h-32 fill-dark-super hover:fill-blue" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="24 24">
         <g className="svg-group">
           <path className="path lines" d="m0 4v2h24v-2zm0 7v2h24v-2zm0 7v2h24v-2z" />

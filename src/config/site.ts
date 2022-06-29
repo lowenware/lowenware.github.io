@@ -12,6 +12,9 @@ export const site = {
     slug: process.env.BLOG_SLUG || "blog",
     postsPerPage: 16,
   },
+  about: {
+    slug: process.env.ABOUT_SLUG || "about",
+  },
   community: {
     slug: process.env.COMMUNITY_SLUG || "community",
   },
