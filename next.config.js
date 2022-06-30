@@ -1,27 +1,13 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
-const withPlugins = require('next-compose-plugins');
-const optimizedImages = require('next-optimized-images');
 
-module.exports = withPlugins(
-  [
-    [
-      optimizedImages,
-      {
-        imagesFolder: "assets",
-        imagesName: "[name]-[hash].[ext]",
-        handleImages: ["svg"],
-        optimizeImages: true,
-
-      },
-    ],
-  ],
-  {
+module.exports = {
     webpack: (config, options) => {
       config.resolve.fallback = {fs: false};
-
+      config.module.rules.push({
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
+      })
       return config;
     },
     images: {
@@ -29,5 +15,6 @@ module.exports = withPlugins(
       path: ""
     },
     trailingSlash: true,
-  },)
+  }
+  
 

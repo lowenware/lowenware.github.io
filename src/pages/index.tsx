@@ -29,7 +29,7 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
           {meta.title} - {site.name}
         </title>
       </Head>
-      <PageLayout className="flex flex-col relative" currentPage="home" links={menu} social={social}>
+      <PageLayout className="flex flex-col relative min-h-full" currentPage="home" links={menu} social={social}>
         <section className="relative flex h-640">
           <div className="z-30 justify-center w-full my-auto flex space-x-144">
             <div className=''>
@@ -69,7 +69,7 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
         </section>
           <div className='sm:w-10/12 h-144 mx-auto bg-white relative -mt-72 z-40 flex flex-col justify-center items-center space-y-16'>
             <span className='text-large'>A bit more than just a Software Studio</span>
-            <Link href=""><a className='text-blue text-large hover:text-dark-super duration-500' href="/about">About Löwenware</a></Link>
+            <Link href="/about"><a className='text-blue text-large hover:text-dark-super duration-500'>About Löwenware</a></Link>
           </div>
           <section className='relative sm:-mt-64'>
             <div className='flex flex-col sm:flex-row w-full sm:space-x-8 sm:space-y-0 space-y-8'>

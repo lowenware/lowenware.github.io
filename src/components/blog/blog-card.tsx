@@ -25,9 +25,9 @@ export const BlogCard: React.FC<BlogCardProps> = ({className, post,url}) => {
           </p>
         </article>
         <div className="flex justify-between text-small">
-          <div className="text-blue-dark">{formatDate(post.date)}</div>
+          <div className="text-grey-600">{formatDate(post.date)}</div>
           {post.tags.length > 0 && (
-            <a href={`/${post.tags[0]}`} className="text-purple font-bold">{`#${post.tags[0]}`}</a>
+            <a href={`/${post.tags[0]}`} className="text-blue hover:text-dark duration-500 font-bold">{`#${post.tags[0]}`}</a>
           )}
         </div>
       </CardBody>

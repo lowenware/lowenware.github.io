@@ -7,21 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:export": "next build && next export"
+    "build:export": "next build && next export",
+    "svg": "svgr -d src/assets/icon src/assets/components"
   },
   "dependencies": {
-    "@svgr/webpack": "^6.2.1",
     "classnames": "^2.3.1",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.5.1",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-mozjpeg": "^10.0.0",
-    "imagemin-optipng": "^8.0.0",
-    "imagemin-svgo": "^10.0.1",
     "markdown-it": "^13.0.1",
     "next": "12.1.6",
-    "next-compose-plugins": "^2.2.1",
-    "next-optimized-images": "^2.6.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.3",
@@ -29,6 +23,7 @@
     "webp-loader": "^0.6.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^6.2.1",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
@@ -36,6 +31,7 @@
     "autoprefixer": "^10.4.7",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
+    "next-compose-plugins": "^2.2.1",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.4",
     "typescript": "4.7.4"

@@ -38,6 +38,7 @@ body{
   pre{
     @apply bg-dark p-16 overflow-auto
   }
+
 }
 pre{
   color:#f8f8f2

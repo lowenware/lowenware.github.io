@@ -44,25 +44,14 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
         )}
       </h2>
 
-        <div className='flex flex-col space-y-16'>
-        <div>
-            <p className='uppercase'>
-                Categories
-            </p>
-            <ul className='flex gap-x-8 flex-wrap'>
-                <li><a className='text-blue' href="#">@tag<span className='text-dark'>[number]</span></a></li>
-                <li><a className='text-blue' href="#">@tag<span className='text-dark'>[number]</span></a></li>
-                <li><a className='text-blue' href="#">@tag<span className='text-dark'>[number]</span></a></li>
-                <li><a className='text-blue' href="#">@tag<span className='text-dark'>[number]</span></a></li>
-            </ul>
-        </div>
-        <div >
+        <div className='flex flex-col md:flex-row space-y-16'>
+        <div className='w-full lg:w-1/4 lg:pr-16'>
         <p className='uppercase'>
         Tags
             </p>
-            <ul className='flex gap-x-8 flex-wrap'>
+            <ul className='flex gap-x-8 flex-wrap lg:'>
             {posts.map((post,key)=>{
-    return <li key={key}><a className='text-blue' href={post.slug}>#{post.tags.map((tags,key)=>{        
+    return <li key={key}><a className='text-blue hover:text-dark duration-500' href={post.slug}>#{post.tags.map((tags,key)=>{        
         return<>{tags}</>
     })}<span className='text-dark'>[{post.tags.length}]</span></a></li>
 })}

@@ -21,7 +21,7 @@ export const Services:React.FC<ServicesProps>=({services})=>{
     <ul className="w-3/4 mx-auto justify-center flex flex-wrap space-x-16 lg:space-x-32 space-y-16 py-16">
        {services && (
         services.map((servic,key)=>{
-            return<li className="mt-auto lg:w-80 lg:h-80 w-64 h-64 space-y-64 flex grayscale hover:grayscale-0 duration-500" key={key}>{Logo.from(servic.meta["label"])}</li>
+            return <li className="mt-auto lg:w-80 lg:h-80 w-64 h-64 space-y-64 flex grayscale hover:grayscale-0 duration-500" key={key}>{Logo.from(servic.meta["label"])}</li>
         })
        )}
     </ul>

@@ -1,6 +1,6 @@
 ---
 title: Blog
 menu: Blog
-order: 40
+order: 50
 ---
 

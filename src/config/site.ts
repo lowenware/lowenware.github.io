@@ -21,4 +21,10 @@ export const site = {
    services: {
     slug: process.env.SERVICES_SLUG || "services",
   },
+  portfolio: {
+    slug: process.env.PORTFOLIO_SLUG || "portfolio",
+  },
+  product: {
+    slug: process.env.PRODUCT_SLUG || "product",
+  },
 };
