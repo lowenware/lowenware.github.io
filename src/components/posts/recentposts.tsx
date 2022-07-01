@@ -1,79 +1,31 @@
-import Link from 'next/link'
-import { ReactNode } from 'react'
+import { site } from '~/config'
+import { BlogPostMeta } from '~/modules/blog'
+import { formatDate, formatDateTime } from '~/utils/format'
 import { Button } from '../button'
-
-export const RecentPosts: React.FC = () => {
+interface RecentPostsProps{
+  posts: BlogPostMeta[]
+  postPerPage:number
+}
+export const RecentPosts: React.FC<RecentPostsProps> = ({posts,postPerPage}) => {
+ const TAGS_PER_POST = 4
+  
   return (
     <section className="w-full flex flex-col my-32 items-center space-y-16">
       <p className='text-h3 text-grey-500'>Recent Posts</p>
       <ul className='space-y-16 flex flex-col '>
-      <li>
-          <div>
-            <a className='text-blue hover:text-dark duration-500' href="">Link to Post</a>
-            <span className='text-grey-600'> - Date 01.01.2001</span>
-          </div>
-          <span>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'>@tag </a></Link>
-            /
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link>
-            </span>
-        </li>
-        <li>
-          <div>
-            <a className='text-blue hover:text-dark duration-500' href="">Link to Post</a>
-            <span className='text-grey-600'> - Date 01.01.2001</span>
-          </div>
-          <span>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'>@tag </a></Link>
-            /
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link></span>
-        </li>
-        <li>
-          <div>
-            <a className='text-blue hover:text-dark duration-500' href="">Link to Post</a>
-            <span className='text-grey-600'> - Date 01.01.2001</span>
-          </div>
-          <span>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'>@tag </a></Link>
-            /
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link></span>
-        </li>
-        <li>
-          <div>
-            <a className='text-blue hover:text-dark duration-500' href="">Link to Post</a>
-            <span className='text-grey-600'> - Date 01.01.2001</span>
-          </div>
-          <span>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'>@tag </a></Link>
-            /
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link></span>
-        </li>
-        <li>
-          <div>
-            <a className='text-blue hover:text-dark duration-500' href="">Link to Post</a>
-            <span className='text-grey-600'> - Date 01.01.2001</span>
-          </div>
-          <span>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'>@tag </a></Link>
-            /
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link></span>
-        </li>
-        <li>
-          <div>
-            <a className='text-blue hover:text-dark duration-500' href="">Link to Post</a>
-            <span className='text-grey-600'> - Date 01.01.2001</span>
-          </div>
-          <span>
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'>@tag </a></Link>
-            /
-            <Link href="/"><a className="hover:text-blue duration-500" href='#'> #tags</a></Link></span>
-        </li>
+    {posts.slice(0,postPerPage).map((post,key)=>{
+      
+      return<li className='flex flex-col' key={key}>
+      
+       <div><a href={`${site.blog.slug}/${post.slug}`} className="text-blue hover:text-dark duration-500">{post.title}</a> - <span className='text-grey-600'>{post.date && formatDate(post.date)}</span></div>
+       <div className='flex space-x-4'>
+       {post.tags.slice(0,TAGS_PER_POST).map(tag=>{
+        return <a key={tag} href={`${site.blog.slug}/${tag}`} className="hover:text-blue duration-500">#{tag}</a>
+       })}</div>
+      </li>
+    })}
       </ul>
-      <Button href={''}>Go to Blog</Button>
+      <Button href={site.blog.slug}>Go to Blog</Button>
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import React from 'react'
 import { site } from '~/config'
 import { BlogPostMeta, Tag } from '~/modules/blog'
 import {
@@ -23,7 +23,6 @@ interface BlogLayoutProps {
   menu: StaticPageMeta[]
   social: SocialMeta[]
   blog: BlogProps
-  tags:Tag[]
 }
 
 export const BlogLayout: React.FC<BlogLayoutProps> = ({

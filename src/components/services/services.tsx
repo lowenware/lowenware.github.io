@@ -10,14 +10,15 @@ export const Services: React.FC<ServicesProps> = ({ services }) => {
   return (
     <section className="flex flex-col">
       <div className="services bg-dark-super text-white">
-          <h3 className="mr-auto ml-64 my-16 text-h2 min-w-200">Sevices</h3>
-          <p className="text-center mx-auto max-w-lg">
+          <h3 className="left text-h2">Sevices</h3>
+          <div className='middle'>
+          <p className="text-center text-large">
             Looking for a subcontractor? Lets make something great together!
-          </p>
-          <span className='my-16 ml-auto mr-64 min-w-200 text-center'>
+          </p></div>
+          <div className='right'>
           <Button variant="outline" className="text-center" href={''}>
-            Get Started
-          </Button></span>
+           <span className='text-large'> Get Started</span>
+          </Button></div>
        
       </div>
       <div className="w-32 h-32 mx-auto -translate-y-16 rotate-45 bg-dark-super"></div>

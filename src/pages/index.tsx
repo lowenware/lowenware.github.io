@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import { site } from '~/config'
 import Head from 'next/head'
-import { Blog, BlogPostRaw } from '~/modules/blog'
+import { Blog, BlogPostRaw, mapBlogPostRawToMeta } from '~/modules/blog'
 import {
   ContentManager,
   PageProps,
@@ -9,7 +9,6 @@ import {
   StaticPageMeta,
 } from '~/modules/content-manager'
 import { hoverEffect, PageLayout, RecentPosts } from '../components'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Services } from '~/components/services'
 import classNames from 'classnames'
@@ -87,7 +86,7 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
               </a>
             </div>
           </section>
-          <RecentPosts/>
+          <RecentPosts posts={posts.map(mapBlogPostRawToMeta)} postPerPage={5}/>
         <Services services={services}/>
       </PageLayout>
     </>

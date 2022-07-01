@@ -27,7 +27,6 @@ const BlogSlugPage: NextPage<PageProps<BlogStaticProps | BlogPostStaticProps>> =
 }) => {
 
   const root = ContentManager.root(menu, site.blog.slug);
-  console.log("BLOG",data)
   if (data.mode === "POST") {
     return (
       <>
