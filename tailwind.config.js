@@ -23,13 +23,17 @@ module.exports = {
   theme: {
     fontFamily: {jura: ["Jura"]},
     fontSize: {
-      h1: ["4rem", 1],
-      h2: ["2.5rem", 1],
-      h3: ["2rem", 1],
+      h1: ["3.6rem", 1],
+      h2: ["2.1rem", 1],
+      h3: ["1.6rem", 1.5],
       small: [".9rem", 1],
-      medium: ["1.2rem", 1.5],
-      large: ["1.4rem", 1],
-    },colors: {
+      medium: ["1.0rem", 1.5],
+      large: ["1.2rem", 1],
+    },
+    minWidth:{
+      "200":"200px"
+    },
+    colors: {
    white:{
     DEFAULT:"#fff"
    },

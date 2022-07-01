@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { site } from '~/config'
 import { BlogPostMeta, Tag } from '~/modules/blog'
 import {
@@ -22,24 +23,25 @@ interface BlogLayoutProps {
   menu: StaticPageMeta[]
   social: SocialMeta[]
   blog: BlogProps
+  tags:Tag[]
 }
 
 export const BlogLayout: React.FC<BlogLayoutProps> = ({
   menu,
   social,
-  blog,
+  blog
 }) => {
   const root = ContentManager.root(menu, site.blog.slug)
-  const { posts, totalPages, page, tag } = blog
+  const { posts, totalPages, page, tag, tags } = blog
+  
   return (
-    <PageLayout className='' currentPage={site.blog.slug} links={menu} social={social}>
+    <PageLayout className='min-h-screen' currentPage={site.blog.slug} links={menu} social={social}>
     <section className="w-full px-16 space-y-16">
       <h2>
         Blog
         {tag && (
-          <span className="text-purple">
-            <span className="mx-24">#</span>
-            {tag}
+          <span className="text-blue">
+            <span className="ml-8">#</span>{tag}
           </span>
         )}
       </h2>
@@ -49,12 +51,10 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
         <p className='uppercase'>
         Tags
             </p>
-            <ul className='flex gap-x-8 flex-wrap lg:'>
-            {posts.map((post,key)=>{
-    return <li key={key}><a className='text-blue hover:text-dark duration-500' href={post.slug}>#{post.tags.map((tags,key)=>{        
-        return<>{tags}</>
-    })}<span className='text-dark'>[{post.tags.length}]</span></a></li>
-})}
+            <ul className=''>
+            {tags.map((tag)=>{
+              return <li key={tag.label} className="flex space-x-2"><a className='text-blue hover:text-dark duration-500' href={`${root.url}/${tag.label}`}>{tag.label}</a><span className='text-grey-600'>[{tag.count}]</span></li>
+            })}
             </ul>
         </div>
         <BlogPosts posts={posts} className="w-full min-h-min -mt-32" />

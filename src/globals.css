@@ -119,6 +119,12 @@ button {
 .opened-nav{
   width: 100%;
   margin-top: 0;
-  
   transform: translateX(0);
+}
+.services{
+min-height: 144px;
+padding: 64px 0 ;
+display: flex;
+justify-content: center;
+align-items: center;
 }

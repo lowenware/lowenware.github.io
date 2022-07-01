@@ -27,7 +27,7 @@ const BlogSlugPage: NextPage<PageProps<BlogStaticProps | BlogPostStaticProps>> =
 }) => {
 
   const root = ContentManager.root(menu, site.blog.slug);
-
+  console.log("BLOG",data)
   if (data.mode === "POST") {
     return (
       <>
@@ -62,8 +62,7 @@ const BlogSlugPage: NextPage<PageProps<BlogStaticProps | BlogPostStaticProps>> =
           posts: data.posts.map(mapBlogPostRawToMeta)
         }}
         menu={menu}
-        social={social}
-      />
+        social={social}  />
     </>
   );
 };
@@ -73,6 +72,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
   const blog = new Blog();
   const manager = new ContentManager();
+
   return {
     props: manager.getPageProps(blog.getBlogStaticProps(slug))
   };

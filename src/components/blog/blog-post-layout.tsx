@@ -29,6 +29,8 @@ export const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
 }) => {
   const {meta, content, prev, next} = post;
   const root = ContentManager.root(menu, site.blog.slug);
+
+  
   return (
     <PageLayout className="" currentPage={site.blog.slug} links={menu} social={social}>
       <div className="max-w-screen-lg mx-auto p-24 lg:p-0">
