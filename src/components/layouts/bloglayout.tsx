@@ -50,9 +50,9 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
         <p className='uppercase'>
         Tags
             </p>
-            <ul className=''>
+            <ul className='flex-wrap flex lg:flex-nowrap lg:block space-x-4 lg:space-x-0'>
             {tags.map((tag)=>{
-              return <li key={tag.label} className="flex space-x-2"><a className='text-blue hover:text-dark duration-500' href={`${root.url}/${tag.label}`}>{tag.label}</a><span className='text-grey-600'>[{tag.count}]</span></li>
+              return <li key={tag.label} className="flex space-x-2 w-min"><a className='text-blue hover:text-dark duration-500' href={`${root.url}/${tag.label}`}>{tag.label}</a><span className='text-grey-600'>[{tag.count}]</span></li>
             })}
             </ul>
         </div>
