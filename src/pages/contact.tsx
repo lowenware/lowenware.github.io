@@ -10,15 +10,44 @@ import {
 } from '~/modules/content-manager'
 import { Button, PageLayout } from '../components'
 import Link from 'next/link'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { FormValues, sumbitForm } from './api/feedback'
+import classNames from 'classnames'
+import { useState } from 'react'
 
-interface Home {
+export enum FeedbackState {
+  NOT_SENT,
+  SENT,
+  ERROR,
+}
+interface ContactProps {
   meta: StaticPageMeta
   posts: BlogPostRaw[]
   contact: StaticContent[]
 }
-const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
-  const { meta, posts, contact } = data
+const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
+  const { meta, contact } = data
+  const { register, handleSubmit } = useForm<FormValues>()
+  const [feedbackState, setFeedbackState] = useState(FeedbackState.NOT_SENT)
 
+  const getFeedbackStateMessage = (state: FeedbackState) => {
+    switch (state) {
+      case FeedbackState.NOT_SENT:
+        return null
+      case FeedbackState.ERROR:
+        return (
+          <div className="bg-red-alert border-red-border p-8 text-dark-super font-bold border-t-2">
+            Type your message and email
+          </div>
+        )
+      case FeedbackState.SENT:
+        return (
+          <div className='bg-green-alert p-8 text-dark-super font-bold border-t-2 border-green-border"'>
+            Succesfull
+          </div>
+        )
+    }
+  }
   return (
     <>
       <Head>
@@ -26,7 +55,6 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
           {meta.title} - {site.name}
         </title>
       </Head>
-
       <PageLayout
         className="flex flex-col relative"
         currentPage="contact"
@@ -99,8 +127,20 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
                   </div>
                 </div>
 
-                <div className="feedback w-1/2 p-48">
-                  <form method="post" id="feedback__form">
+                <div className="feedback px-48 w-1/2 space-y-8">
+                  {/* <div 
+                   className={classNames("bg-green-alert p-8 text-dark-super font-bold border-t-2 border-green-border","bg-red-alert border-red-border")}
+                   > */}
+                  {getFeedbackStateMessage(feedbackState)}
+
+                  <form
+                    className="pt-32"
+                    method="post"
+                    id="feedback__form"
+                    onSubmit={handleSubmit((values) =>
+                      sumbitForm(values, setFeedbackState),
+                    )}
+                  >
                     <div className="space-y-16 flex flex-col">
                       <label htmlFor="feedback__msg" className="text-large">
                         Your Message
@@ -108,6 +148,8 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
                       <textarea
                         id="feedback__msg"
                         className="h-288 w-full bg-grey-300 rounded-2xl p-8"
+                        {...register('msg')}
+                        placeholder="Type your message..."
                       ></textarea>
                     </div>
                     <div className="pt-32">
@@ -115,31 +157,35 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
                         Your E-Mail
                       </label>
                       <input
+                        {...register('email')}
                         type="email"
                         id="feedback__email"
                         defaultValue=""
                         className="p-8 w-full bg-grey-300 rounded-2xl"
+                        placeholder="Type your email..."
                       />
                     </div>
                     <div className="py-8">
                       By submitting this form you agree with{' '}
-                      <Link
-                        href="/privacy-statement/"
-                        
-                      >
-                        <span className="text-blue hover:text-dark duration-500 cursor-pointer"> Privacy Statement </span>
+                      <Link href="/privacy-statement/">
+                        <span className="text-blue hover:text-dark duration-500 cursor-pointer">
+                          {' '}
+                          Privacy Statement{' '}
+                        </span>
                       </Link>
                       and accept
                       <Link
                         href="/terms-of-use/"
                         className="text-blue hover:text-dark duration-500"
                       >
-                        <span className="text-blue hover:text-dark duration-500 cursor-pointer"> Terms of Use</span>
+                        <span className="text-blue hover:text-dark duration-500 cursor-pointer">
+                          {' '}
+                          Terms of Use
+                        </span>
                       </Link>
-                      .
                     </div>
                     <div className="flex justify-center">
-                      <Button href={''}>
+                      <Button isLink={false} href={''}>
                         <button type="submit" className="button">
                           Send
                         </button>
@@ -162,8 +208,7 @@ export const getStaticProps = async () => {
       meta: manager.page(site.home.slug),
       //TODO Why slug contains .md
       contact: manager.readFolderOrdered(['contact']),
-      posts: new Blog().getRawBlogPosts(site.home.maxBlogPosts),
     }),
   }
 }
-export default Home
+export default Contact

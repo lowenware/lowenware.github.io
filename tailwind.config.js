@@ -46,8 +46,16 @@ module.exports = {
     super:"#5bd6ff",
     light:"#b9e2ff"
    },
+   green:{
+      alert:"#d4edda",
+      border:"#256333",
+   },
+   red:{
+      alert:"#f8d7da",
+      border:"#7e2d35",
+   },
    grey:{
-    100:"fafaff",
+    100:"#fafaff",
     200:"#f8f8fc",
     300:"#eceef3",
     500:"#556471",

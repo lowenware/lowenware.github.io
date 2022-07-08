@@ -34,7 +34,7 @@ export const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
   return (
     <PageLayout className="" currentPage={site.blog.slug} links={menu} social={social}>
       <div className="max-w-screen-lg mx-auto p-24 lg:p-0">
-        <a className="text-h2" href="/blog">{"<"}Blog</a>
+        <Link href="/blog"><a className="text-h2">{"<"}Blog</a></Link>
         <main>
           <h1>{meta.title}</h1>
           <div className="flex justify-between mb-32">

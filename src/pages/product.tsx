@@ -10,13 +10,13 @@ import {
 } from '~/modules/content-manager'
 import { Button, PageLayout } from '../components'
 
-interface Home {
+interface ProductProps {
   meta: StaticPageMeta
   posts: BlogPostRaw[]
-  product:StaticContent[]
+  product: StaticContent[]
 }
-const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
-  const { meta, posts,product } = data
+const Product: NextPage<PageProps<ProductProps>> = ({ menu, social, data }) => {
+  const { meta, product } = data
 
   return (
     <>
@@ -25,11 +25,14 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
           {meta.title} - {site.name}
         </title>
       </Head>
-      
-      <PageLayout className="flex flex-col relative" currentPage="product" links={menu} social={social}>
-        <section className='min-h-screen'>
 
-        </section>
+      <PageLayout
+        className="flex flex-col relative"
+        currentPage="product"
+        links={menu}
+        social={social}
+      >
+        <section className="min-h-screen"></section>
       </PageLayout>
     </>
   )
@@ -42,8 +45,7 @@ export const getStaticProps = async () => {
       meta: manager.page(site.product.slug),
       //TODO Why slug contains .md
       product: manager.readFolderOrdered(['product']),
-      posts: new Blog().getRawBlogPosts(site.home.maxBlogPosts),
     }),
   }
 }
-export default Home
+export default Product

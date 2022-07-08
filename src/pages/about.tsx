@@ -16,21 +16,27 @@ import { CardAbout } from '~/components/card/card-about'
 interface About {
   meta: StaticPageMeta
   posts: BlogPostRaw[]
-  about:StaticContent[]
+  about: StaticContent[]
 }
-const About: NextPage<PageProps<About>> = ({ menu, social, data}) => {
-  const {meta, posts, about} = data
+const About: NextPage<PageProps<About>> = ({ menu, social, data }) => {
+  const { meta, posts, about } = data
 
   return (
     <>
       <Head>
-        <title>{meta.title} - {site.name}</title>
+        <title>
+          {meta.title} - {site.name}
+        </title>
       </Head>
-      <PageLayout className="flex flex-col relative min-h-full" currentPage="about" links={menu} social={social}>
-        <section className='flex flex-col lg:flex-row w-full items-center'>
-      <CardAbout about={about}/>
-      
-      </section>
+      <PageLayout
+        className="flex flex-col relative min-h-full"
+        currentPage="about"
+        links={menu}
+        social={social}
+      >
+        <section className="flex flex-col lg:flex-row w-full items-center">
+          <CardAbout about={about} />
+        </section>
       </PageLayout>
     </>
   )
@@ -42,16 +48,16 @@ const About: NextPage<PageProps<About>> = ({ menu, social, data}) => {
 //       props: manager.getPageProps(manager.page("about")),
 //     };
 //   };
-  export const getStaticProps = async () => {
-    const manager = new ContentManager()
-    return {
-      props: manager.getPageProps({
-        meta: manager.page(site.about.slug),
-        //TODO Why slug contains .md
-        about: manager.readFolderOrdered(['about']),
-        posts: new Blog().getRawBlogPosts(site.home.maxBlogPosts),
-      }),
-    }
+export const getStaticProps = async () => {
+  const manager = new ContentManager()
+  return {
+    props: manager.getPageProps({
+      meta: manager.page(site.about.slug),
+      //TODO Why slug contains .md
+      about: manager.readFolderOrdered(['about']),
+      posts: new Blog().getRawBlogPosts(site.home.maxBlogPosts),
+    }),
   }
+}
 
 export default About

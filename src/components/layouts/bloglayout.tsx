@@ -7,6 +7,7 @@ import {
   StaticPageMeta,
 } from '~/modules/content-manager'
 import { BlogPosts } from '../blog'
+import { Paginator } from '../paginator'
 
 // import {BlogPosts} from "./blog-posts";
 import { PageLayout } from './pagelayout'
@@ -37,7 +38,7 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
     <PageLayout className='min-h-screen' currentPage={site.blog.slug} links={menu} social={social}>
     <section className="w-full px-16 space-y-16">
       <h2>
-        Blog
+        Blog /
         {tag && (
           <span className="text-blue">
             <span className="ml-8">#</span>{tag}
@@ -59,15 +60,12 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
         <BlogPosts posts={posts} className="w-full min-h-min -mt-32" />
         </div>
       </section>
-
-     
-
-      {/* <Paginator
+      <Paginator
         className="my-24"
         page={page}
         totalPages={totalPages}
         root={tag ? `${root.url}/${tag}` : root.url}
-      /> */}
+      />
     </PageLayout>
   )
 }

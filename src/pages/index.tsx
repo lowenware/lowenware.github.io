@@ -12,14 +12,15 @@ import { hoverEffect, PageLayout, RecentPosts } from '../components'
 import Link from 'next/link'
 import { Services } from '~/components/services'
 import classNames from 'classnames'
+import Image from 'next/image'
 
 interface Home {
   meta: StaticPageMeta
   posts: BlogPostRaw[]
-  services:StaticContent[]
+  services: StaticContent[]
 }
 const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
-  const { meta, posts,services } = data
+  const { meta, posts, services } = data
 
   return (
     <>
@@ -28,22 +29,41 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
           {meta.title} - {site.name}
         </title>
       </Head>
-      <PageLayout className="flex flex-col relative min-h-full" currentPage="home" links={menu} social={social}>
-        <section className="relative flex h-640">
+      <PageLayout
+        className="flex flex-col relative min-h-full"
+        currentPage="home"
+        links={menu}
+        social={social}
+      >
+        <section className="relative w-full flex h-640 bg-[url('/static/backgrounds-image/aisl-slide.jpg')] bg-cover bg-no-repeat bg-center">
           <div className="z-30 justify-center w-full my-auto flex space-x-144">
-            <div className=''>
-              <h1 className='relative'>
+            <div className="">
+              <h1 className="relative">
                 <Link href={meta.url}>
-                  <a className={classNames(hoverEffect, "before:bg-white text-white before:top-1/2 before:-left-32")} href="#">{meta.title}</a>
+                  <a
+                    className={classNames(
+                      hoverEffect,
+                      'before:bg-white text-white before:top-1/2 before:-left-32',
+                    )}
+                    href="#"
+                  >
+                    {meta.title}
+                  </a>
                 </Link>
               </h1>
-              <p className='text-white'>Game Engine in Rust</p>
+              <p className="text-white">Game Engine in Rust</p>
             </div>
             <div>
               <ul className="flex flex-col space-y-32">
                 <li className="flex flex-col space-y-8">
                   <Link href={''}>
-                    <a  className={classNames(hoverEffect, "text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32")} href="">
+                    <a
+                      className={classNames(
+                        hoverEffect,
+                        'text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32',
+                      )}
+                      href=""
+                    >
                       Handbook
                     </a>
                   </Link>
@@ -51,7 +71,13 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
                 </li>
                 <li className="flex flex-col space-y-8 relative">
                   <Link href={''}>
-                    <a className={classNames(hoverEffect, "text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32")} href="">
+                    <a
+                      className={classNames(
+                        hoverEffect,
+                        'text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32',
+                      )}
+                      href=""
+                    >
                       Donate
                     </a>
                   </Link>
@@ -60,34 +86,47 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
               </ul>
             </div>
           </div>
-          <img
-            alt=""
-            src={'/assets/aisl-slide.jpg'}
-            className="w-full h-640 bg-blue absolute z-10"
-          />
         </section>
-          <div className='sm:w-10/12 h-144 mx-auto bg-white relative -mt-72 z-40 flex flex-col justify-center items-center space-y-16'>
-            <span className='text-large'>A bit more than just a Software Studio</span>
-            <Link href="/about"><a className='text-blue text-large hover:text-dark-super duration-500'>About Löwenware</a></Link>
+        <div className="sm:w-10/12 h-144 mx-auto bg-white relative -mt-72 z-40 flex flex-col justify-center items-center space-y-16">
+          <span className="text-large">
+            A bit more than just a Software Studio
+          </span>
+          <Link href="/about">
+            <a className="text-blue text-large hover:text-dark-super duration-500">
+              About Löwenware
+            </a>
+          </Link>
+        </div>
+        <section className="relative sm:-mt-64">
+          <div className="flex flex-col sm:flex-row w-full sm:space-x-8 sm:space-y-0 space-y-8">
+            <a
+              className="sm:w-1/3 h-60 bg-grey-200 duration-500 hover:text-dark text-blue hover:bg-grey-300 flex flex-col justify-center items-center space-y-16"
+              href=""
+            >
+              <span className="text-h3">LeOs</span>
+              <span className="text-dark">Operating system for ARM64</span>
+            </a>
+            <a
+              className="sm:w-1/3 h-60 bg-grey-200 duration-500 hover:bg-grey-300 flex hover:text-dark text-blue flex-col justify-center items-center space-y-16"
+              href=""
+            >
+              <span className="text-h3 uppercase">Aisl</span>
+              <span className="text-dark">Web Development in C</span>
+            </a>
+            <a
+              className="sm:w-1/3 h-60 bg-grey-200 duration-500 hover:bg-grey-300 flex flex-col hover:text-dark text-blue justify-center items-center space-y-16"
+              href=""
+            >
+              <span className="text-h3">Open Source</span>
+              <span className="text-dark">Discover on Github</span>
+            </a>
           </div>
-          <section className='relative sm:-mt-64'>
-            <div className='flex flex-col sm:flex-row w-full sm:space-x-8 sm:space-y-0 space-y-8'>
-              <a className='sm:w-1/3 h-60 bg-grey-200 duration-500 hover:text-dark text-blue hover:bg-grey-300 flex flex-col justify-center items-center space-y-16' href="">
-                <span className='text-h3'>LeOs</span>
-                <span className='text-dark'>Operating system for ARM64</span>
-              </a>
-              <a className='sm:w-1/3 h-60 bg-grey-200 duration-500 hover:bg-grey-300 flex hover:text-dark text-blue flex-col justify-center items-center space-y-16' href="">
-              <span className='text-h3 uppercase'>Aisl</span>
-                <span className='text-dark'>Web Development in C</span>
-              </a>
-              <a className='sm:w-1/3 h-60 bg-grey-200 duration-500 hover:bg-grey-300 flex flex-col hover:text-dark text-blue justify-center items-center space-y-16' href="">
-              <span className='text-h3'>Open Source</span>
-                <span className='text-dark'>Discover on Github</span>
-              </a>
-            </div>
-          </section>
-          <RecentPosts posts={posts.map(mapBlogPostRawToMeta)} postPerPage={5}/>
-        <Services services={services}/>
+        </section>
+        <RecentPosts
+          posts={posts.map(mapBlogPostRawToMeta)}
+          postPerPage={site.home.maxBlogPosts}
+        />
+        <Services services={services} />
       </PageLayout>
     </>
   )

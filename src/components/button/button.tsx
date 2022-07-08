@@ -9,9 +9,10 @@ interface ButtonProps {
   children: ReactNode,
   className?: string,
   href: string,
+  isLink?:boolean
 } 
 
-export const Button:React.FC<ButtonProps> = ({href,children,variant = "primary",className})=>{
+export const Button:React.FC<ButtonProps> = ({href ,children,variant = "primary",className, isLink = true})=>{
     const getVariantClassNames = (variant: ButtonVariantEnum) => {
         switch (variant) {
         case "primary":
@@ -23,13 +24,17 @@ export const Button:React.FC<ButtonProps> = ({href,children,variant = "primary",
         }
       };
       const classes = classNames(
-        "border-2  py-3 px-24 duration-500 rounded-3xl",
+        "border-2 py-3 px-24 duration-500 rounded-3xl",
         getVariantClassNames(variant),
         className
       );
-    return <Link href={href}>
-    
+
+      if(isLink){
+    return <Link href={href}>    
       <a className={classes}>{children}</a>
-    
-  </Link>
+            </Link>}
+      if(!isLink){
+      return <a className={classes}>{children}</a>
+  } 
+  return<></>
 }

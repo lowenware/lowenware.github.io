@@ -6,11 +6,11 @@ export const site = {
   },
   home: {
     slug: process.env.HOME_SLUG || "home",
-    maxBlogPosts: 8,
+    maxBlogPosts: 6,
   },
   blog: {
     slug: process.env.BLOG_SLUG || "blog",
-    postsPerPage: 16,
+    postsPerPage: 4,
   },
   about: {
     slug: process.env.ABOUT_SLUG || "about",

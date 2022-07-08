@@ -16,7 +16,7 @@ export const Services: React.FC<ServicesProps> = ({ services }) => {
             Looking for a subcontractor? Lets make something great together!
           </p></div>
           <div className='right'>
-          <Button variant="outline" className="text-center" href={''}>
+          <Button variant="outline" className="text-center" href={'/contact'}>
            <span className='text-large'> Get Started</span>
           </Button></div>
        
