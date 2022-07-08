@@ -10,7 +10,7 @@ import {
 } from '~/modules/content-manager'
 import { Button, PageLayout } from '../components'
 import Link from 'next/link'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { FormValues, sumbitForm } from './api/feedback'
 import classNames from 'classnames'
 import { useState } from 'react'
@@ -27,7 +27,7 @@ interface ContactProps {
 }
 const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
   const { meta, contact } = data
-  const { register, handleSubmit } = useForm<FormValues>()
+  const { register, handleSubmit, reset } = useForm<FormValues>()
   const [feedbackState, setFeedbackState] = useState(FeedbackState.NOT_SENT)
 
   const getFeedbackStateMessage = (state: FeedbackState) => {
@@ -49,12 +49,11 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
     }
   }
   const title = `${meta.title} - ${site.name}`
+
   return (
     <>
       <Head>
-        <title>
-          {title}
-        </title>
+        <title>{title}</title>
       </Head>
       <PageLayout
         className="flex flex-col relative"
@@ -81,7 +80,7 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                           </span>
                           <br />
                           <span className="postal-code">
-                            {contact.meta.postalCode}{' '}
+                            {contact.meta.postalCode} 
                           </span>
                           <span className="locality">
                             {contact.meta.locality}
@@ -101,11 +100,11 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                           </a>
                         </p>
                         <p className="org-id">
-                          <span className="label">Company ID: </span>{' '}
+                          <span className="label">Company ID: </span> 
                           <span className="value">{contact.meta.orgId}</span>
                         </p>
                         <p className="org-iban">
-                          <span className="label">IBAN: </span>{' '}
+                          <span className="label">IBAN: </span> 
                           <span className="value">{contact.meta.iban}</span>
                         </p>
                       </div>
@@ -129,17 +128,13 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                 </div>
 
                 <div className="feedback px-48 w-1/2 space-y-8">
-                  {/* <div 
-                   className={classNames("bg-green-alert p-8 text-dark-super font-bold border-t-2 border-green-border","bg-red-alert border-red-border")}
-                   > */}
                   {getFeedbackStateMessage(feedbackState)}
-
                   <form
                     className="pt-32"
                     method="post"
                     id="feedback__form"
                     onSubmit={handleSubmit((values) =>
-                      sumbitForm(values, setFeedbackState),
+                      sumbitForm(values, setFeedbackState, reset),
                     )}
                   >
                     <div className="space-y-16 flex flex-col">
@@ -151,6 +146,7 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                         className="h-288 w-full bg-grey-300 rounded-2xl p-8"
                         {...register('msg')}
                         placeholder="Type your message..."
+                        required
                       ></textarea>
                     </div>
                     <div className="pt-32">
@@ -167,11 +163,10 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                       />
                     </div>
                     <div className="py-8">
-                      By submitting this form you agree with{' '}
+                      By submitting this form you agree with 
                       <Link href="/privacy-statement/">
                         <span className="text-blue hover:text-dark duration-500 cursor-pointer">
-                          {' '}
-                          Privacy Statement{' '}
+                          Privacy Statement 
                         </span>
                       </Link>
                       and accept
@@ -180,17 +175,16 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                         className="text-blue hover:text-dark duration-500"
                       >
                         <span className="text-blue hover:text-dark duration-500 cursor-pointer">
-                          {' '}
                           Terms of Use
                         </span>
                       </Link>
                     </div>
                     <div className="flex justify-center">
-                      <Button isLink={false} href={''}>
-                        <button type="submit" className="button">
+                      <button type="submit" className="my-16">
+                        <Button isLink={false} href={''}>
                           Send
-                        </button>
-                      </Button>
+                        </Button>
+                      </button>
                     </div>
                   </form>
                 </div>

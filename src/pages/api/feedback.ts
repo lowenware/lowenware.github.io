@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { useForm } from 'react-hook-form'
 import { FeedbackState } from '../contact'
 
 export type FormValues = {
@@ -9,7 +10,9 @@ export type FormValues = {
 export const sumbitForm = async (
   values: FormValues,
   setFeedbackState: (state: FeedbackState) => void,
+  reset: () =>void
 ) => {
+  
   let config = {
     method: 'post',
     url: `${process.env['BACKEND_URL']}/hook/feedback/`,
@@ -21,6 +24,7 @@ export const sumbitForm = async (
   try {
     await axios(config)
     setFeedbackState(FeedbackState.SENT)
+    reset()
   } catch (error) {
     setFeedbackState(FeedbackState.ERROR)
   }

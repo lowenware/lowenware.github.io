@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import { site } from '~/config'
 import { BlogPostMeta, Tag } from '~/modules/blog'
@@ -38,11 +39,16 @@ export const BlogLayout: React.FC<BlogLayoutProps> = ({
     <PageLayout className='min-h-screen' currentPage={site.blog.slug} links={menu} social={social}>
     <section className="w-full px-16 space-y-16">
       <h2>
-        Blog /
+       {!tag && ("Blog")}
         {tag && (
+          <>
+          <Link href="/blog"><a className='duration-500 hover:text-blue'>Blog </a></Link>
+          /
           <span className="text-blue">
             <span className="ml-8">#</span>{tag}
           </span>
+          </>
+
         )}
       </h2>
 
