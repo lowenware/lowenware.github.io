@@ -20,7 +20,7 @@ the year and what are our plans.
 
 [![Dotrix Editor](/dotrix/editor-screenshot.png)](/blog/gamedev/gamedev-relaunch/)
 
-<!--more-->
+ 
 
 In June 2020 I've decided to hire a developer to join and help me with projects I've been doing for
 customers. One of the candidates, his name is Stepan, had experience with game development. Based

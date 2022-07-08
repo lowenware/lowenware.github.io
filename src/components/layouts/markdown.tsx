@@ -41,7 +41,7 @@ export const Markdown: React.FC<MarkdownProps> = ({className, content, patchHtml
           ].join("");
         } catch (e) {
           // eslint-disable-next-line no-console
-          console.error("Can't highlight syntax", e);
+          console.error("Can't highlight syntax",e);
         }
       }
 

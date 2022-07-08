@@ -1,23 +1,24 @@
-import { NextPage } from 'next'
-import { site } from '~/config'
-import Head from 'next/head'
-import { Blog, BlogPostRaw } from '~/modules/blog'
+import {NextPage} from "next";
+import Head from "next/head";
+
+import {PageLayout} from "~/components";
+import {site} from "~/config";
+import {BlogPostRaw} from "~/modules/blog";
 import {
   ContentManager,
   PageProps,
   StaticContent,
   StaticPageMeta,
-} from '~/modules/content-manager'
-import { Button, PageLayout } from '../components'
+} from "~/modules/content-manager";
 
 interface ProductProps {
-  meta: StaticPageMeta
-  posts: BlogPostRaw[]
-  product: StaticContent[]
+  meta: StaticPageMeta,
+  posts: BlogPostRaw[],
+  product: StaticContent[],
 }
-const Product: NextPage<PageProps<ProductProps>> = ({ menu, social, data }) => {
-  const { meta, product } = data
-  const title = `${meta.title} - ${site.name}`
+const Product: NextPage<PageProps<ProductProps>> = ({menu, social, data}) => {
+  const {meta} = data;
+  const title = `${meta.title} - ${site.name}`;
   return (
     <>
       <Head>
@@ -35,17 +36,18 @@ const Product: NextPage<PageProps<ProductProps>> = ({ menu, social, data }) => {
         <section className="min-h-screen"></section>
       </PageLayout>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps = async () => {
-  const manager = new ContentManager()
+  const manager = new ContentManager();
   return {
     props: manager.getPageProps({
       meta: manager.page(site.product.slug),
       //TODO Why slug contains .md
-      product: manager.readFolderOrdered(['product']),
+      product: manager.readFolderOrdered(["product"]),
     }),
-  }
-}
-export default Product
+  };
+};
+
+export default Product;

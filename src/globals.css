@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: "Jura";
+  src: url("../assets/font/jura-regular.woff2") format("woff2"), url("../assets/font/jura-regular.woff") format("woff");
+  }
 
 a {
   color: inherit;
@@ -11,6 +15,7 @@ html{
 body{
   width: 100%;
   height: 100%;
+  font-family: "Jura", serif;
 }
 * {
   padding: 0;

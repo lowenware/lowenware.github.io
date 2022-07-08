@@ -10,7 +10,7 @@ interface LeafOverProps {
   className?: string,
   prev: Leaf | null,
   next: Leaf | null,
-};
+}
 
 export const LeafOver: React.FC<LeafOverProps> = ({className, prev, next}) => {
   return (

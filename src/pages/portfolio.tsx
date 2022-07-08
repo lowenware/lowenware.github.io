@@ -1,35 +1,33 @@
-import { NextPage } from 'next'
-import { site } from '~/config'
-import Head from 'next/head'
-import { Blog, BlogPostRaw } from '~/modules/blog'
+import {NextPage} from "next";
+import Head from "next/head";
+
+import {PageLayout} from "~/components";
+import {site} from "~/config";
+import {BlogPostRaw} from "~/modules/blog";
 import {
   ContentManager,
   PageProps,
   StaticContent,
   StaticPageMeta,
-} from '~/modules/content-manager'
-import { Button, PageLayout } from '../components'
+} from "~/modules/content-manager";
 
 interface PortfolioProps {
-  meta: StaticPageMeta
-  posts: BlogPostRaw[]
-  portfolio: StaticContent[]
+  meta: StaticPageMeta,
+  posts: BlogPostRaw[],
+  portfolio: StaticContent[],
 }
 const Portfolio: NextPage<PageProps<PortfolioProps>> = ({
   menu,
   social,
   data,
 }) => {
-  const { meta, portfolio } = data
-const title = `${meta.title} - ${site.name}`
+  const {meta} = data;
+  const title = `${meta.title} - ${site.name}`;
   return (
     <>
       <Head>
-        <title>
-          {title}
-        </title>
+        <title>{title}</title>
       </Head>
-
       <PageLayout
         className="flex flex-col relative"
         currentPage="portfolio"
@@ -39,17 +37,18 @@ const title = `${meta.title} - ${site.name}`
         <section className="min-h-screen"></section>
       </PageLayout>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps = async () => {
-  const manager = new ContentManager()
+  const manager = new ContentManager();
   return {
     props: manager.getPageProps({
       meta: manager.page(site.portfolio.slug),
       //TODO Why slug contains .md
-      portfolio: manager.readFolderOrdered(['portfolio']),
+      portfolio: manager.readFolderOrdered(["portfolio"]),
     }),
-  }
-}
-export default Portfolio
+  };
+};
+
+export default Portfolio;

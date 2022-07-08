@@ -1,12 +1,14 @@
-import '../globals.css'
-import type { AppProps } from 'next/app'
+/* eslint-disable no-restricted-imports */
+import "../globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+import type {AppProps} from "next/app";
+
+function MyApp({Component, pageProps}: AppProps) {
   return (
     <>
       <Component {...pageProps} />
     </>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

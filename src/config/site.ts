@@ -18,7 +18,7 @@ export const site = {
   community: {
     slug: process.env.COMMUNITY_SLUG || "community",
   },
-   services: {
+  services: {
     slug: process.env.SERVICES_SLUG || "services",
   },
   portfolio: {

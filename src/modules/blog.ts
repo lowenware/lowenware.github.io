@@ -7,7 +7,7 @@ import {site} from "~/config";
 export interface BlogPostRaw {
   slug: string,
   title: string,
-  summary: string,
+  summary?: string,
   date: string,
   tags: string,
   image: string | null,
@@ -16,7 +16,7 @@ export interface BlogPostRaw {
 export interface BlogPostMeta {
   slug: string,
   title: string,
-  summary: string,
+  summary?: string,
   date: Date,
   tags: string[],
   image: string | null,

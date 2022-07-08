@@ -18,7 +18,7 @@ From this post you can learn how to write a simple bare metal program in Rust fo
 ARM AArch64 architecture, run it with QEMU on virtual device, attach a debugger
 and disassemble it.
 
-<!--more-->
+ 
 
 ## Introduction
 

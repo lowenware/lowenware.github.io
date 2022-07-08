@@ -1,19 +1,20 @@
-import { NextPage } from 'next'
-import { site } from '~/config'
-import Head from 'next/head'
-import { Blog, BlogPostRaw } from '~/modules/blog'
+import {NextPage} from "next";
+import Head from "next/head";
+import Link from "next/link";
+import {useState} from "react";
+import {useForm} from "react-hook-form";
+
+import {Button, PageLayout} from "~/components";
+import {site} from "~/config";
+import {BlogPostRaw} from "~/modules/blog";
 import {
   ContentManager,
   PageProps,
   StaticContent,
   StaticPageMeta,
-} from '~/modules/content-manager'
-import { Button, PageLayout } from '../components'
-import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { FormValues, sumbitForm } from './api/feedback'
-import classNames from 'classnames'
-import { useState } from 'react'
+} from "~/modules/content-manager";
+
+import {FormValues, sumbitForm} from "./api/feedback";
 
 export enum FeedbackState {
   NOT_SENT,
@@ -21,34 +22,35 @@ export enum FeedbackState {
   ERROR,
 }
 interface ContactProps {
-  meta: StaticPageMeta
-  posts: BlogPostRaw[]
-  contact: StaticContent[]
+  meta: StaticPageMeta,
+  posts: BlogPostRaw[],
+  contact: StaticContent[],
 }
-const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
-  const { meta, contact } = data
-  const { register, handleSubmit, reset } = useForm<FormValues>()
-  const [feedbackState, setFeedbackState] = useState(FeedbackState.NOT_SENT)
+const Contact: NextPage<PageProps<ContactProps>> = ({menu, social, data}) => {
+  const {meta} = data;
+  const {register, handleSubmit, reset} = useForm<FormValues>();
+  const [feedbackState, setFeedbackState] = useState(FeedbackState.NOT_SENT);
 
   const getFeedbackStateMessage = (state: FeedbackState) => {
     switch (state) {
-      case FeedbackState.NOT_SENT:
-        return null
-      case FeedbackState.ERROR:
-        return (
-          <div className="bg-red-alert border-red-border p-8 text-dark-super font-bold border-t-2">
-            Type your message and email
-          </div>
-        )
-      case FeedbackState.SENT:
-        return (
-          <div className='bg-green-alert p-8 text-dark-super font-bold border-t-2 border-green-border"'>
-            Succesfull
-          </div>
-        )
+    case FeedbackState.NOT_SENT:
+      return null;
+    case FeedbackState.ERROR:
+      return (
+        <div className="bg-red-alert border-red-border p-8 text-dark-super font-bold border-t-2">
+           Something went wrong
+        </div>
+      );
+    case FeedbackState.SENT:
+      return (
+        <div className="bg-green-alert p-8 text-dark-super font-bold border-t-2 border-green-border">
+           Thank you for your message!
+        </div>
+      );
     }
-  }
-  const title = `${meta.title} - ${site.name}`
+  };
+
+  const title = `${meta.title} - ${site.name}`;
 
   return (
     <>
@@ -69,7 +71,7 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                   <div className="flex flex-col p-48 relative text-white min-h-min bg-dark space-y-32">
                     <div className="space-y-32 flex flex-col">
                       <h2>{contact.meta.title}</h2>
-                      <span>{contact.meta.summary}</span>
+                      <span>{contact.content}</span>
                       <div className="space-y-16">
                         <h3>{contact.meta.subTitle}</h3>
                         <p className="org">{contact.meta.name}</p>
@@ -80,7 +82,7 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                           </span>
                           <br />
                           <span className="postal-code">
-                            {contact.meta.postalCode} 
+                            {contact.meta.postalCode}
                           </span>
                           <span className="locality">
                             {contact.meta.locality}
@@ -100,11 +102,11 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                           </a>
                         </p>
                         <p className="org-id">
-                          <span className="label">Company ID: </span> 
+                          <span className="label">Company ID: </span>
                           <span className="value">{contact.meta.orgId}</span>
                         </p>
                         <p className="org-iban">
-                          <span className="label">IBAN: </span> 
+                          <span className="label">IBAN: </span>
                           <span className="value">{contact.meta.iban}</span>
                         </p>
                       </div>
@@ -117,7 +119,7 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                       height="100%"
                       id="gmap_canvas"
                       src={
-                        'https://maps.google.com/maps?q=U Jezu 525/4&t=&z=17&ie=UTF8&iwloc=&output=embed'
+                        "https://maps.google.com/maps?q=U Jezu 525/4&t=&z=17&ie=UTF8&iwloc=&output=embed"
                       }
                       frameBorder={0}
                       scrolling="no"
@@ -126,14 +128,13 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                     ></iframe>
                   </div>
                 </div>
-
                 <div className="feedback px-48 w-1/2 space-y-8">
                   {getFeedbackStateMessage(feedbackState)}
                   <form
                     className="pt-32"
                     method="post"
                     id="feedback__form"
-                    onSubmit={handleSubmit((values) =>
+                    onSubmit={handleSubmit(values =>
                       sumbitForm(values, setFeedbackState, reset),
                     )}
                   >
@@ -144,7 +145,7 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                       <textarea
                         id="feedback__msg"
                         className="h-288 w-full bg-grey-300 rounded-2xl p-8"
-                        {...register('msg')}
+                        {...register("msg")}
                         placeholder="Type your message..."
                         required
                       ></textarea>
@@ -154,7 +155,7 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                         Your E-Mail
                       </label>
                       <input
-                        {...register('email')}
+                        {...register("email")}
                         type="email"
                         id="feedback__email"
                         defaultValue=""
@@ -163,10 +164,10 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                       />
                     </div>
                     <div className="py-8">
-                      By submitting this form you agree with 
+                      By submitting this form you agree with
                       <Link href="/privacy-statement/">
                         <span className="text-blue hover:text-dark duration-500 cursor-pointer">
-                          Privacy Statement 
+                          {" "}Privacy Statement{" "}
                         </span>
                       </Link>
                       and accept
@@ -175,13 +176,13 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                         className="text-blue hover:text-dark duration-500"
                       >
                         <span className="text-blue hover:text-dark duration-500 cursor-pointer">
-                          Terms of Use
+                          {" "}Terms of Use{" "}
                         </span>
                       </Link>
                     </div>
                     <div className="flex justify-center">
                       <button type="submit" className="my-16">
-                        <Button isLink={false} href={''}>
+                        <Button isLink={false} href={""}>
                           Send
                         </Button>
                       </button>
@@ -189,21 +190,22 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
                   </form>
                 </div>
               </section>
-            )
+            );
           })}
       </PageLayout>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps = async () => {
-  const manager = new ContentManager()
+  const manager = new ContentManager();
   return {
     props: manager.getPageProps({
       meta: manager.page(site.home.slug),
       //TODO Why slug contains .md
-      contact: manager.readFolderOrdered(['contact']),
+      contact: manager.readFolderOrdered(["contact"]),
     }),
-  }
-}
-export default Contact
+  };
+};
+
+export default Contact;

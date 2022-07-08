@@ -1,32 +1,31 @@
-import { NextPage } from 'next'
-import { site } from '~/config'
-import Head from 'next/head'
-import { Blog, BlogPostRaw } from '~/modules/blog'
+import {NextPage} from "next";
+import Head from "next/head";
+
+import {PageLayout} from "~/components";
+import {CardAbout} from "~/components/card/card-about";
+import {site} from "~/config";
+import {Blog, BlogPostRaw} from "~/modules/blog";
 import {
   ContentManager,
   PageProps,
   StaticContent,
   StaticPageMeta,
-} from '~/modules/content-manager'
-import { hoverEffect, PageLayout, RecentPosts } from '../components'
-import { Services } from '~/components/services'
-import classNames from 'classnames'
-import { CardAbout } from '~/components/card/card-about'
+} from "~/modules/content-manager";
 
 interface About {
-  meta: StaticPageMeta
-  posts: BlogPostRaw[]
-  about: StaticContent[]
+  meta: StaticPageMeta,
+  posts: BlogPostRaw[],
+  about: StaticContent[],
 }
-const About: NextPage<PageProps<About>> = ({ menu, social, data }) => {
-  const { meta, posts, about } = data
-  const title = `${meta.title} - ${site.name}`
+const About: NextPage<PageProps<About>> = ({menu, social, data}) => {
+  const {meta, about} = data;
+  const title = `${meta.title} - ${site.name}`;
 
   return (
     <>
       <Head>
         <title>
-         {title}
+          {title}
         </title>
       </Head>
       <PageLayout
@@ -40,25 +39,19 @@ const About: NextPage<PageProps<About>> = ({ menu, social, data }) => {
         </section>
       </PageLayout>
     </>
-  )
-}
+  );
+};
 
-// export const getStaticProps = async () => {
-//     const manager = new ContentManager();
-//     return {
-//       props: manager.getPageProps(manager.page("about")),
-//     };
-//   };
 export const getStaticProps = async () => {
-  const manager = new ContentManager()
+  const manager = new ContentManager();
   return {
     props: manager.getPageProps({
       meta: manager.page(site.about.slug),
       //TODO Why slug contains .md
-      about: manager.readFolderOrdered(['about']),
+      about: manager.readFolderOrdered(["about"]),
       posts: new Blog().getRawBlogPosts(site.home.maxBlogPosts),
     }),
-  }
-}
+  };
+};
 
-export default About
+export default About;

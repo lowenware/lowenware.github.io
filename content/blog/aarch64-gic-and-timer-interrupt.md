@@ -20,7 +20,7 @@ task on some architectures, to have it on AArch64 you need to configure so calle
 Controller. From this post you will know how to initialize Generic Interrupt Controller (GIC),
 control priorities and target an interrupt to specific core.
 
-<!--more-->
+ 
 
 ## Preamble
 

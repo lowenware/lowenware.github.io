@@ -1,34 +1,33 @@
-import { NextPage } from 'next'
-import { site } from '~/config'
-import Head from 'next/head'
-import { Blog, BlogPostRaw, mapBlogPostRawToMeta } from '~/modules/blog'
+import classNames from "classnames";
+import {NextPage} from "next";
+import Head from "next/head";
+import Link from "next/link";
+
+import {hoverEffect, PageLayout, RecentPosts} from "~/components";
+import {Services} from "~/components/services";
+import {site} from "~/config";
+import {Blog, BlogPostRaw, mapBlogPostRawToMeta} from "~/modules/blog";
 import {
   ContentManager,
   PageProps,
   StaticContent,
   StaticPageMeta,
-} from '~/modules/content-manager'
-import { hoverEffect, PageLayout, RecentPosts } from '../components'
-import Link from 'next/link'
-import { Services } from '~/components/services'
-import classNames from 'classnames'
-import Image from 'next/image'
+} from "~/modules/content-manager";
 
 interface Home {
-  meta: StaticPageMeta
-  posts: BlogPostRaw[]
-  services: StaticContent[]
+  meta: StaticPageMeta,
+  posts: BlogPostRaw[],
+  services: StaticContent[],
 }
-const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
-  const { meta, posts, services } = data
-  const title = `${meta.title} - ${site.name}`
+
+const Home: NextPage<PageProps<Home>> = ({menu, social, data}) => {
+  const {meta, posts, services} = data;
+  const title = `${meta.title} - ${site.name}`;
 
   return (
     <>
       <Head>
-        <title>
-          {title}
-        </title>
+        <title>{title}</title>
       </Head>
       <PageLayout
         className="flex flex-col relative min-h-full"
@@ -36,7 +35,7 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
         links={menu}
         social={social}
       >
-        <section className="relative w-full flex h-640 bg-[url('/static/backgrounds-image/aisl-slide.jpg')] bg-cover bg-no-repeat bg-center">
+        <section className="relative w-full flex h-640 bg-[url(/static/backgrounds-image/aisl-slide.jpg)] bg-cover bg-no-repeat bg-center">
           <div className="z-30 justify-center w-full my-auto flex space-x-144">
             <div className="">
               <h1 className="relative">
@@ -44,7 +43,7 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
                   <a
                     className={classNames(
                       hoverEffect,
-                      'before:bg-white text-white before:top-1/2 before:-left-32',
+                      "before:bg-white text-white before:top-1/2 before:-left-32",
                     )}
                     href="#"
                   >
@@ -57,11 +56,11 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
             <div>
               <ul className="flex flex-col space-y-32">
                 <li className="flex flex-col space-y-8">
-                  <Link href={''}>
+                  <Link href={""}>
                     <a
                       className={classNames(
                         hoverEffect,
-                        'text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32',
+                        "text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32",
                       )}
                       href=""
                     >
@@ -71,11 +70,11 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
                   <span className="text-small">In Progress</span>
                 </li>
                 <li className="flex flex-col space-y-8 relative">
-                  <Link href={''}>
+                  <Link href={""}>
                     <a
                       className={classNames(
                         hoverEffect,
-                        'text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32',
+                        "text-large text-white before:bg-white relative before:top-1/2 hover:before:w-16 before:-left-32",
                       )}
                       href=""
                     >
@@ -130,18 +129,18 @@ const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
         <Services services={services} />
       </PageLayout>
     </>
-  )
-}
+  );
+};
 
 export const getStaticProps = async () => {
-  const manager = new ContentManager()
+  const manager = new ContentManager();
   return {
     props: manager.getPageProps({
       meta: manager.page(site.home.slug),
       //TODO Why slug contains .md
-      services: manager.readFolderOrdered(['services']),
+      services: manager.readFolderOrdered(["services"]),
       posts: new Blog().getRawBlogPosts(site.home.maxBlogPosts),
     }),
-  }
-}
-export default Home
+  };
+};
+export default Home;

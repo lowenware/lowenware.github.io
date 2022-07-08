@@ -1,5 +1,6 @@
 
 import classNames from "classnames";
+
 import {site} from "~/config";
 import {BlogPostMeta} from "~/modules/blog";
 
@@ -25,7 +26,6 @@ export const BlogPosts: React.FC<BlogPostsProps> = ({className, posts}) => {
             className="flex flex-col hover:no-underline "
           >
             <BlogCard className="flex-grow" url={`/${site.blog.slug}/${post.slug}`} post={post} />
-           
           </span>
         ))}
     </section>

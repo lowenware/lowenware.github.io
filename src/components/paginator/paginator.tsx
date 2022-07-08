@@ -76,10 +76,8 @@ export const Paginator: React.FC<PaginatorProps> = ({
 
   return (
     <div
-      className={classNames(
-        "mx-auto font-bold flex items-center justify-center space-x-8",
-        className
-      )}
+      className={classNames("mx-auto font-bold flex items-center justify-center space-x-8",
+        className,)}
     >
       {pageLinks.map((link, index) => (
         <PaginatorButton

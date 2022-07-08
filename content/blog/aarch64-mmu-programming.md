@@ -18,7 +18,7 @@ MMU stands for Memory Management Unit and it is responsible for virtual memory a
 memory access control. Being one of the most important subjects of the OS development, it could be 
 at the same time very confusing. In this post I will try to clear out MMU programming process.
 
-<!--more-->
+ 
 
 I've just merged the [commit](https://github.com/lowenware/leos-kernel/commit/aa6def9a9dea74c671800fd715e12525f9c80fce)
 containing MMU support implementation into master branch of [LeOS](/leos/) repository. This post

@@ -40,7 +40,9 @@ export const PaginatorButton: React.FC<PaginatorButtonProps> = ({
     <Button
       variant={isCurrent ? "primary" : "outline"}
       href={link}
-      className={classNames(className,"rounded-none", isCurrent ? "px-16":"text-dark border border-dark-super py-3 px-16 hover:text-white hover:bg-dark-super")}
+      className={classNames(className,"rounded-none",
+        isCurrent ? "px-16"
+          :"text-dark border border-dark-super py-3 px-16 hover:text-white hover:bg-dark-super")}
     >
       {buttonText}
     </Button>

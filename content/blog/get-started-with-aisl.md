@@ -9,7 +9,7 @@ summary: "When you need to have a reliable high performance back end solution, t
 of technology stack does matter a lot. The main advantage of [AISL](/aisl/) is that it
 allows you to build an application over HTTP stream and react on various
 headers and content parts on the fly. It is a secure way that preserves CPU
-time a lot.<!--more-->"
+time a lot. "
 author: "Ilja K."
 sticky: false
 publication: true
@@ -19,7 +19,7 @@ When you need to have a reliable high performance back end solution, the choice
 of technology stack does matter a lot. The main advantage of [AISL](/aisl/) is that it
 allows you to build an application over HTTP stream and react on various
 headers and content parts on the fly. It is a secure way that preserves CPU
-time a lot.<!--more-->
+time a lot. 
 
 Typical back end is an application that is awaiting for some HTTP server to
 provide parsed HTTP request using some interface: WSGI, FastCGI, CGI etc.

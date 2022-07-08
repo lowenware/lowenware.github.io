@@ -1,12 +1,10 @@
 import Link from "next/link";
 
+import {LeafOver,Markdown,PageLayout} from "~/components";
 import {site} from "~/config";
 import {BlogPostMeta, BlogPostRaw} from "~/modules/blog";
 import {ContentManager, SocialMeta, StaticPageMeta} from "~/modules/content-manager";
 import {formatDateTime} from "~/utils/format";
-import { LeafOver } from "../layouts/leaf-over";
-import { Markdown } from "../layouts/markdown";
-import { PageLayout } from "../layouts/pagelayout";
 
 interface BlogPostProps {
   meta: BlogPostMeta,
@@ -25,12 +23,10 @@ export const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
   post,
   menu,
   social,
-
 }) => {
   const {meta, content, prev, next} = post;
   const root = ContentManager.root(menu, site.blog.slug);
 
-  
   return (
     <PageLayout className="" currentPage={site.blog.slug} links={menu} social={social}>
       <div className="max-w-screen-lg mx-auto p-24 lg:p-0">

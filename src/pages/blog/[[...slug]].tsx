@@ -1,6 +1,7 @@
 import {GetStaticProps, NextPage} from "next";
 import Head from "next/head";
-import { BlogLayout, BlogPostLayout } from "~/components";
+
+import {BlogLayout, BlogPostLayout} from "~/components";
 import {site} from "~/config";
 import {
   Blog,
@@ -29,7 +30,7 @@ const BlogSlugPage: NextPage<PageProps<BlogStaticProps | BlogPostStaticProps>> =
   const root = ContentManager.root(menu, site.blog.slug);
 
   if (data.mode === "POST") {
-    const title = `${data.meta.title} - ${root.title} - ${site.name}`
+    const title = `${data.meta.title} - ${root.title} - ${site.name}`;
     return (
       <>
         <Head>
@@ -62,7 +63,7 @@ const BlogSlugPage: NextPage<PageProps<BlogStaticProps | BlogPostStaticProps>> =
           posts: data.posts.map(mapBlogPostRawToMeta)
         }}
         menu={menu}
-        social={social}  />
+        social={social} />
     </>
   );
 };
