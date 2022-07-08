@@ -17,12 +17,12 @@ interface ProductProps {
 }
 const Product: NextPage<PageProps<ProductProps>> = ({ menu, social, data }) => {
   const { meta, product } = data
-
+  const title = `${meta.title} - ${site.name}`
   return (
     <>
       <Head>
         <title>
-          {meta.title} - {site.name}
+          {title}
         </title>
       </Head>
 

@@ -21,12 +21,12 @@ const Portfolio: NextPage<PageProps<PortfolioProps>> = ({
   data,
 }) => {
   const { meta, portfolio } = data
-
+const title = `${meta.title} - ${site.name}`
   return (
     <>
       <Head>
         <title>
-          {meta.title} - {site.name}
+          {title}
         </title>
       </Head>
 

@@ -23,12 +23,13 @@ const StaticSlugPage: NextPage<PageProps<StaticPage>> = ({
   data,
 }) => {
   const { meta, content } = data
+  const title = `${meta.title} - ${site.name}`
 
   return (
     <>
       <Head>
         <title>
-          {meta.title} - {site.name}
+          {title}
         </title>
       </Head>
       <PageLayout currentPage={meta.slug} links={menu} social={social}>

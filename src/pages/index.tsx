@@ -21,12 +21,13 @@ interface Home {
 }
 const Home: NextPage<PageProps<Home>> = ({ menu, social, data }) => {
   const { meta, posts, services } = data
+  const title = `${meta.title} - ${site.name}`
 
   return (
     <>
       <Head>
         <title>
-          {meta.title} - {site.name}
+          {title}
         </title>
       </Head>
       <PageLayout

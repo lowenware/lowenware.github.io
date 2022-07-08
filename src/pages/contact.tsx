@@ -48,11 +48,12 @@ const Contact: NextPage<PageProps<ContactProps>> = ({ menu, social, data }) => {
         )
     }
   }
+  const title = `${meta.title} - ${site.name}`
   return (
     <>
       <Head>
         <title>
-          {meta.title} - {site.name}
+          {title}
         </title>
       </Head>
       <PageLayout

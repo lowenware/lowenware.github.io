@@ -27,11 +27,13 @@ const BlogSlugPage: NextPage<PageProps<BlogStaticProps | BlogPostStaticProps>> =
 }) => {
 
   const root = ContentManager.root(menu, site.blog.slug);
+
   if (data.mode === "POST") {
+    const title = `${data.meta.title} - ${root.title} - ${site.name}`
     return (
       <>
         <Head>
-          <title>{data.meta.title} - {root.title} - {site.name}</title>
+          <title>{title}</title>
         </Head>
         <BlogPostLayout
           post={{
@@ -47,7 +49,6 @@ const BlogSlugPage: NextPage<PageProps<BlogStaticProps | BlogPostStaticProps>> =
 
 
   const tag = data.tag;
-
   return (
     <>
       <Head>
