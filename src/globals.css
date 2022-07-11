@@ -3,7 +3,11 @@
   font-family: "Jura";
   src: url("../assets/font/jura-regular.woff2") format("woff2"), url("../assets/font/jura-regular.woff") format("woff");
   }
-
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 a {
   color: inherit;
   text-decoration: none;
@@ -14,14 +18,10 @@ html{
 }
 body{
   width: 100%;
-  height: 100%;
+  height: 100vh;
   font-family: "Jura", serif;
 }
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+
 @tailwind base;
 
 @layer base {
@@ -36,6 +36,9 @@ body{
   }
   p {
     @apply text-medium;
+  }
+  p a{
+    @apply text-blue hover:text-dark-super duration-300
   }
   article h1 {
     @apply text-blue hover:text-dark-super duration-300
@@ -128,7 +131,7 @@ button {
 }
 .services{
 min-height: 144px;
-padding: 64px 0 ;
+padding: 64px 0;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -136,6 +139,19 @@ align-items: center;
 @media screen and (min-width: 600px) {
   .services{
   display: flex;}
+  .left {
+    margin: 8px auto;
+    min-width: 200px;
+  }
+  
+  .middle {
+    margin: 8px auto;
+    max-width: 480px;
+  }
+  .right {
+    margin: 8px auto;
+    min-width: 177px;
+  }
 }
 .dark-bg {
     padding: 24px 0;
@@ -143,16 +159,5 @@ align-items: center;
     align-items: center;
     min-height: 144px;
    }
-   .left {
-    margin: 8px auto;
-    min-width: 200px;
-  }
-  .middle {
-    margin: 8px auto;
-    max-width: 480px;
-  }
-  .right {
-    margin: 8px auto;
-    min-width: 200px;
-  }
+  
    

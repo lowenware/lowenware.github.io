@@ -2,6 +2,7 @@ import classNames from "classnames";
 import Image from "next/image";
 
 import {Card, CardBody} from "~/components/card";
+import {Markdown} from "~/components/layouts";
 import {site} from "~/config";
 import {BlogPostMeta} from "~/modules/blog";
 import {formatDate} from "~/utils/format";
@@ -20,8 +21,8 @@ export const BlogCard: React.FC<BlogCardProps> = ({className, post, url}) => {
           <h1>
             <a href={url}>{post.title}</a>
           </h1>
+          <Markdown className="text-black-gray text-small" content={post.summary}></Markdown>
           <p className="text-gray-font">
-            {post.summary}
             <a
               className="text-blue hover:text-dark-super duration-500"
               href={url}

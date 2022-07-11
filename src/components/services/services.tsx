@@ -10,15 +10,15 @@ export const Services: React.FC<ServicesProps> = ({services}) => {
   return (
     <section className="flex flex-col">
       <div className="services bg-dark-super text-white">
-        <h3 className="left text-h2">Sevices</h3>
-        <div className="middle">
-          <p className="text-center text-large">
+        <h3 className="left md:text-h2 text-h3 w-1/4 pl-16">Sevices</h3>
+        <div className="middle w-1/2">
+          <p className="text-center md:text-large">
             Looking for a subcontractor? Lets make something great together!
           </p>
         </div>
-        <div className="right">
-          <Button variant="outline" className="text-center" href={"/contact"}>
-            <span className="text-large">Get Started</span>
+        <div className="right w-1/4 justify-end flex pr-16">
+          <Button variant="outline" className="text-center px-4 py-8" href={"/contact"}>
+            <span className="text-small sm:text-large">Get Started</span>
           </Button>
         </div>
       </div>
