@@ -1,4 +1,4 @@
-name: Löwenware Website Test and Build
+name: Löwenware Website Deploy
 
 on:
   push:
