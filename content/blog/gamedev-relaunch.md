@@ -12,8 +12,6 @@ It has been a while since the last post here. It is all because of the very
 important and even more positive changes in Löwenware. From this post you will
 know what was happening for the last half of the year and what are our plans.
 
-[![Dotrix Editor](/blog/editor-screenshot.png)](/dotrix/)
-
 In June 2020 I've decided to hire a developer to join and help me with projects
 I've been doing for customers. One of the candidates, his name is Stepan, had
 experience with game development. Based on this, we've found many common
