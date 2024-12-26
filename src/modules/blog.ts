@@ -11,7 +11,9 @@ export interface BlogPostMetaRaw extends StaticPageMeta {
   title: string,
   summary?: string,
   tags: string,
+  preview: string | null,
   image: string | null,
+  youtube: string | null,
   comments: boolean,
   author: string,
 }
@@ -161,7 +163,7 @@ export class Blog {
 
   getBlogPostStaticProps(slug: string): BlogPostStaticProps {
     const {meta, content} = this.readBlogPost(`${slug}.md`);
-    const index = this.posts.findIndex(p => p.slug === slug)!;
+    const index = this.posts.findIndex(p => p.slug === slug);
 
     let prev = null,
       next = null;
@@ -227,7 +229,7 @@ export class Blog {
       }
     });
 
-    const {title, summary, date, tags, image, comments, author} = data;
+    const {title, summary, date, tags, image, comments, author, youtube, preview} = data;
     const slug = fileName.replace(this.extension, "");
 
     return {
@@ -238,10 +240,12 @@ export class Blog {
         summary,
         date,
         tags,
+        preview,
         image,
         url: path.join(this.meta.url, slug),
         menu: null,
         order: 0,
+        youtube,
         comments: comments === false ? false : true,
       }),
       content,
@@ -277,9 +281,11 @@ export const mapBlogPostMetaToRaw = (meta: BlogPostMeta): BlogPostMetaRaw => ({
 
 export const mapBlogPostRawToMeta = (raw: BlogPostMetaRaw): BlogPostMeta => ({
   ...raw,
-  date: new Date(raw.date!),
+  date: new Date(`${raw.date}`),
   tags: raw.tags
     ? `${raw.tags}`.split(",").map(t => t.trim().toLowerCase())
     : [],
   image: raw.image || null,
+  preview: raw.preview || null,
+  youtube: raw.youtube || null,
 });

@@ -61,7 +61,7 @@ export class ContentManager {
   private metaFields = ["title"];
 
   static root(menu: StaticPageMeta[], slug: string) {
-    return menu.find(l => l.slug === slug)!;
+    return menu.find(l => l.slug === slug);
   };
 
   constructor(
