@@ -71,8 +71,8 @@ const Product: NextPage<PageProps<DotrixPageProps>> = ({menu, social, data}) => 
         <div className="mx-auto max-w-screen-lg">
           <Markdown className="text-md" content={faq} />
         </div>
-        <PageAction action="dotrix.rs" link="https://dotrix.rs/">
-          Find more on Dotrix website!
+        <PageAction action="GitHub" link="https://github.com/lowenware/dotrix">
+          Find more on GitHub!
         </PageAction>
       </PageLayout>
     </>

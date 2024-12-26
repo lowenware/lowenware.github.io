@@ -41,7 +41,7 @@ export const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
               {formatDate(post.meta.date)} by <span className="font-bold">{post.meta.author}</span>
             </span>
           )}
-          {tags.length > 0 && (
+          {!!tags.length && root?.url && (
             <div className="flex space-x-8 font-bold">
               {tags.map(
                 tag => (
@@ -53,6 +53,13 @@ export const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
             </div>
           )}
         </div>
+        {post.meta.youtube && (
+          <div className="mb-24 relative overflow-hidden w-full pt-[56.25%]">
+            <iframe className="absolute top-0 bottom-0 left-0 right-0 w-full h-full"
+              src={`https://www.youtube.com/embed/${post.meta.youtube}`}>
+            </iframe>
+          </div>
+        )}
         {post.meta.image && (
           <div className="mb-24">
             <Image
@@ -65,10 +72,10 @@ export const BlogPostLayout: React.FC<BlogPostLayoutProps> = ({
           </div>
         )}
         <Markdown className="text-black-gray text-sm" content={post.content}></Markdown>
-        <LeafOver className="my-32"
+        {root?.url && (<LeafOver className="my-32"
           prev={prev && ({url: `${root.url}/${prev.slug}`, title: prev.title})}
           next={next && ({url: `${root.url}/${next.slug}`, title: next.title})}
-        />
+        />)}
         {post.meta.comments && (
           <section className="border-t-8 border-grey">
             <BlogComments />

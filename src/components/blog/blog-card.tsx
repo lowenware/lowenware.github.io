@@ -14,13 +14,14 @@ interface BlogCardProps {
 }
 
 export const BlogCard: React.FC<BlogCardProps> = ({className, post, url}) => {
+  const image = post.preview || post.image;
   return (
     <Card className={classNames("shadow-sm bg-grey-300", className)}>
       <article className="flex flex-col flex-grow">
-        {post.image && (
+        {image && (
           <a href={url}>
             <Image
-              src={`//${site.blog.slug}/${post.image}`}
+              src={`//${site.blog.slug}/${image}`}
               alt={""}
               width={1280}
               height={720}
